@@ -212,8 +212,8 @@ tr:hover td{background:var(--bg3)}
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <script>
 /* ===== إعدادات المشروع: ضع القيمتين من Supabase > Project Settings > API ===== */
-const SUPABASE_URL = 'https://YOUR-PROJECT.supabase.co';
-const SUPABASE_ANON_KEY = 'YOUR-ANON-KEY';   // المفتاح العام anon فقط، لا تضع service_role هنا أبدًا
+const SUPABASE_URL = 'https://bfmfdvejcoijqucdtfbj.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJmbWZkdmVqY29panF1Y2R0ZmJqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE3MzM0OTAsImV4cCI6MjEwNzMwOTQ5MH0.IvMjlarrRyXY_ipnVwFiQ6jgHwOYS3DvTZFnXY-_B50';   // المفتاح العام anon فقط، لا تضع service_role هنا أبدًا
 
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 const $ = s => document.querySelector(s);
