@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>مركز غسيل الكلية - الزوايدة الميداني</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root,[data-theme="dark"]{--bg:#06121f;--bg2:#081827;--bg3:#0b1f33;--card:#0c1d30;--bdr:#16314d;--bdr2:#1f4468;--tx:#e3edf9;--mt:#7c9bbb;--dim:#46627f;--bl:#2563eb;--bl2:#3b82f6;--bl3:#7db3fb;--gr2:#10b981;--gr3:#6ee7b7;--rd2:#ef4444;--rd3:#fca5a5;--am2:#f59e0b;--am3:#fcd34d;--selo:#10294a;--hovo:#0e2540;--dupo:#2b2410;--sh:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.2)}
+[data-theme="light"]{--bg:#f1f5f9;--bg2:#e9eef5;--bg3:#f6f8fb;--card:#fff;--bdr:#dbe3ec;--bdr2:#b9c6d6;--tx:#0f172a;--mt:#52637a;--dim:#94a3b8;--bl:#1d4ed8;--bl2:#2563eb;--bl3:#1e40af;--gr2:#059669;--gr3:#065f46;--rd2:#dc2626;--rd3:#991b1b;--am2:#d97706;--am3:#92400e;--selo:#e6effd;--hovo:#f0f5fb;--dupo:#fff4d6;--sh:0 1px 2px rgba(15,23,42,.06),0 10px 30px rgba(15,23,42,.06)}
+*{margin:0;padding:0;box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--tx);font:14px/1.6 'Tajawal',sans-serif;min-height:100vh}
+body.lg{display:flex;align-items:center;justify-content:center;padding:20px}
+svg.i{width:18px;height:18px;flex:none;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.theme-toggle{display:none;position:fixed;top:14px;left:14px;z-index:10}
+body.lg .theme-toggle{display:block}
+/* عناصر التحكم */
+input,select,textarea{font:inherit;font-size:13.5px;color:var(--tx);height:38px;padding:0 12px;background:var(--bg2);border:1px solid var(--bdr);border-radius:8px;min-width:0;outline:none;transition:border-color .15s,box-shadow .15s}
+input:hover,select:hover{border-color:var(--bdr2)}
+input:focus,select:focus{border-color:var(--bl2);box-shadow:0 0 0 3px rgba(59,130,246,.2)}
+input::placeholder{color:var(--dim)}
+input[type=checkbox]{height:auto;width:16px;height:16px;accent-color:var(--bl2);cursor:pointer}
+textarea{height:auto;padding:10px 12px}
+label{display:flex;flex-direction:column;gap:5px;font-size:12px;font-weight:600;color:var(--mt)}
+button{font:inherit;font-size:13.5px;font-weight:700;height:38px;padding:0 18px;border-radius:8px;border:1px solid transparent;background:linear-gradient(135deg,#1d4ed8,#0891b2);color:#fff;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:filter .15s,background .15s,border-color .15s}
+button:hover:not(:disabled){filter:brightness(1.12)}
+button:disabled{opacity:.5;cursor:not-allowed}
+button:focus-visible{outline:2px solid var(--bl3);outline-offset:2px}
+button.ghost{background:transparent;border-color:var(--bdr2);color:var(--tx);font-weight:600}
+button.ghost:hover:not(:disabled){background:var(--bg3);border-color:var(--bl2);filter:none}
+button.danger{background:transparent;border-color:rgba(239,68,68,.5);color:var(--rd3);height:32px;padding:0 12px;font-weight:600}
+button.danger:hover{background:rgba(239,68,68,.12);filter:none}
+td button.ghost{height:32px;padding:0 12px}
+button.ic{width:34px;height:34px;padding:0;background:transparent;border-color:transparent;color:var(--mt)}
+button.ic:hover{background:var(--bg3);color:var(--tx);filter:none}
+/* الدخول */
+#login{background:var(--card);border:1px solid var(--bdr);border-radius:16px;padding:36px 34px 26px;width:100%;max-width:410px;box-shadow:var(--sh)}
+.logo{text-align:center;margin-bottom:22px}
+.logo-img{width:76px;height:76px;border-radius:16px;background:#fff;padding:6px;object-fit:contain;display:block;margin:0 auto 14px;box-shadow:0 0 0 1px var(--bdr)}
+.logo-img.sm{width:42px;height:42px;padding:3px;border-radius:10px;margin:0;flex:none}
+.logo-title{font-size:18px;font-weight:800}
+.logo-sub{font-size:12px;color:var(--mt);margin-top:2px}
+.conn{display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:8px;background:var(--bg2);border:1px solid var(--bdr);font-size:12px;color:var(--mt);margin-bottom:18px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--dim);flex:none}
+.dot.ok{background:var(--gr2);box-shadow:0 0 8px var(--gr2)}.dot.bad{background:var(--rd2)}
+.form-title{font-size:13px;font-weight:700;color:var(--mt);text-align:center;margin-bottom:16px}
+.field{margin-bottom:14px}
+.inp-wrap{position:relative}
+.inp-wrap input{width:100%;height:44px}
+.eye{position:absolute;top:50%;left:6px;transform:translateY(-50%);height:32px;padding:0 10px;background:transparent;color:var(--mt);font-size:12px;font-weight:600}
+.btn-login{width:100%;height:44px;margin-top:6px;font-size:14.5px}
+.spin{width:18px;height:18px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:sp .6s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.msg{margin-top:14px;padding:10px 14px;border-radius:8px;font-size:12.5px;font-weight:600}
+.msg.err{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);color:var(--rd3)}
+.msg.ok{background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.3);color:var(--gr3)}
+.hint{margin-top:16px;padding:10px 14px;border-radius:8px;background:var(--bg2);border:1px solid var(--bdr);font-size:12px;color:var(--mt)}
+.footer{margin-top:14px;text-align:center;font-size:11px;color:var(--dim)}
+/* الهيكل */
+#app{display:flex;min-height:100vh}
+aside{width:248px;flex:none;background:var(--card);border-inline-end:1px solid var(--bdr);display:flex;flex-direction:column;position:sticky;top:0;height:100vh}
+.brand{padding:16px;border-bottom:1px solid var(--bdr);display:flex;gap:12px;align-items:center}
+.brand b{display:block;font-size:14.5px;font-weight:800;line-height:1.3}
+.brand span{font-size:11.5px;color:var(--mt)}
+nav{padding:10px;flex:1;overflow:auto}
+nav small{display:block;padding:14px 10px 6px;font-size:11px;font-weight:700;color:var(--dim)}
+nav button{width:100%;justify-content:flex-start;height:40px;margin-bottom:2px;background:transparent;color:var(--mt);font-weight:600;padding:0 12px;border-radius:8px;filter:none}
+nav button:hover:not(:disabled){background:var(--bg3);color:var(--tx)}
+nav button.on{background:rgba(37,99,235,.16);color:var(--bl3);font-weight:700}
+nav button:disabled{opacity:1;color:var(--dim);cursor:default}
+nav button:disabled::after{content:"قريبًا";margin-inline-start:auto;font-size:10px;background:var(--bg3);border-radius:99px;padding:0 8px}
+.user{padding:12px;border-top:1px solid var(--bdr)}
+.urow{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#1d4ed8,#0891b2);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;flex:none}
+.uinfo{flex:1;min-width:0}.uinfo b{display:block;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.uinfo span{font-size:11.5px;color:var(--mt)}
+.user .themebtn{width:100%;height:32px;font-size:12px}
+.content{flex:1;min-width:0}
+.topbar{background:var(--card);border-bottom:1px solid var(--bdr);padding:14px 24px;display:flex;justify-content:space-between;align-items:center;gap:14px}
+.topbar h1{font-size:19px;font-weight:800}
+.topbar p{font-size:12.5px;color:var(--mt)}
+.today{font-size:12.5px;color:var(--mt);background:var(--bg2);border:1px solid var(--bdr);padding:5px 12px;border-radius:99px;white-space:nowrap}
+main{padding:20px 24px;max-width:1500px}
+/* بطاقات ونماذج */
+.card{background:var(--card);border:1px solid var(--bdr);border-radius:12px;margin-bottom:18px;box-shadow:var(--sh);overflow:hidden}
+.card>.ch{padding:13px 16px;border-bottom:1px solid var(--bdr);font-size:14px;font-weight:800}
+.card>.cb{padding:16px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(200px,100%),1fr));gap:14px}
+.sech{margin:16px 0 8px;font-size:13px;font-weight:800}
+.mut{color:var(--mt);font-size:12.5px;padding:10px 16px}
+.warn{color:var(--am3);font-weight:600}
+.sum{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;padding:14px}
+.sum div{background:var(--bg3);border:1px solid var(--bdr);border-radius:10px;padding:10px 14px;font-size:12px;color:var(--mt)}
+.sum b{display:block;font-size:24px;font-weight:800;color:var(--tx);line-height:1.3}
+/* الجداول */
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{padding:9px 12px;text-align:right;border-bottom:1px solid var(--bdr);white-space:nowrap}
+th{font-size:12px;font-weight:700;color:var(--mt);background:var(--bg3);position:sticky;top:0}
+td.mut,td.empty{white-space:normal}
+td.empty{text-align:center;padding:36px;color:var(--mt)}
+tbody tr:hover td,table tr:hover td{background:var(--hovo)}
+.tag{display:inline-block;padding:1px 10px;border-radius:99px;font-size:11.5px;font-weight:700;background:rgba(59,130,246,.15);color:var(--bl3)}
+.tag.hbv,.tag.hcv{background:rgba(245,158,11,.16);color:var(--am3)}
+.tag.off{background:rgba(148,163,184,.18);color:var(--mt)}
+.tag.ok{background:rgba(16,185,129,.15);color:var(--gr3)}
+/* شبكة جلسات الغسيل */
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;padding:14px;border-bottom:1px solid var(--bdr)}
+.tgrp{display:flex;gap:6px;align-items:center}
+.tgrp button{height:36px;padding:0 12px}
+.search{position:relative;flex:1;min-width:240px}
+.search svg{position:absolute;top:50%;right:12px;transform:translateY(-50%);color:var(--dim)}
+.search input{width:100%;padding-inline-start:38px}
+.seg{display:flex;border:1px solid var(--bdr);border-radius:8px;overflow:hidden}
+.seg button{background:transparent;color:var(--mt);border-radius:0;height:36px;padding:0 14px;font-weight:600;filter:none}
+.seg button.on{background:var(--bl);color:#fff}
+.help{padding:8px 14px;font-size:12px;color:var(--mt)}
+.note{padding:9px 14px;background:rgba(245,158,11,.12);font-size:13px}
+.gwrap{overflow:auto;max-height:calc(100vh - 380px);min-height:280px;border-top:1px solid var(--bdr)}
+.grid-tbl{font-size:12.5px;min-width:1560px}
+.grid-tbl th{z-index:3}
+.grid-tbl th.st0,.grid-tbl td.st0{position:sticky;right:0;width:46px;min-width:46px;text-align:center;z-index:2;background:var(--card)}
+.grid-tbl th.st1,.grid-tbl td.st1{position:sticky;right:46px;min-width:230px;z-index:2;background:var(--card);box-shadow:-1px 0 0 var(--bdr)}
+.grid-tbl th.st0,.grid-tbl th.st1{z-index:4;background:var(--bg3)}
+.grid-tbl td{padding:5px 10px}
+.grid-tbl tbody tr:hover td{background:var(--hovo)}
+.grid-tbl tbody tr.sel td{background:var(--selo)}
+.grid-tbl tbody tr.dup td{background:var(--dupo)}
+.nm{font-weight:700}
+.mono{font-variant-numeric:tabular-nums;direction:ltr;text-align:right}
+.cell{height:30px;width:66px;padding:0 6px;text-align:center;font-size:12.5px;border-radius:6px}
+select.cell{width:96px;text-align:right;padding:0 4px}
+select.cell.wide{width:150px}
+.gbar{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 14px;border-top:1px solid var(--bdr);background:var(--bg3)}
+.gbar .mut{padding:0}
+#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--card);border:1px solid var(--bdr2);border-inline-start:4px solid var(--gr2);color:var(--tx);padding:11px 18px;border-radius:10px;font-weight:600;max-width:90vw;z-index:99;box-shadow:var(--sh)}
+#toast.bad{border-inline-start-color:var(--rd2)}
+/* بطاقات الجلسات */
+#t-sessions>.card{overflow:visible}
+.dnav input{flex:1;min-width:130px}
+.more{flex:none}
+.more summary{cursor:pointer;font-size:13px;font-weight:700;color:var(--mt);padding:8px 4px;list-style:none}
+.more summary::-webkit-details-marker{display:none}
+.more summary::before{content:"＋ "}
+.more[open] summary::before{content:"－ "}
+.morei{display:flex;flex-wrap:wrap;gap:8px;padding-top:6px}
+.pcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:10px;padding:12px}
+.pcards .empty{grid-column:1/-1;padding:36px 12px;text-align:center;color:var(--mt)}
+.gbar{position:sticky;bottom:0;z-index:20;border-radius:0 0 12px 12px;box-shadow:0 -6px 16px rgba(0,0,0,.18)}
+.tbtns{display:none;gap:2px}
+.pkw{position:relative;flex:1;min-width:260px}
+.pkw input{width:100%}
+.pkl{position:absolute;top:calc(100% + 4px);inset-inline:0;z-index:70;background:var(--card);border:1px solid var(--bdr2);border-radius:10px;box-shadow:var(--sh);overflow:hidden}
+.pk{padding:9px 12px;cursor:pointer;display:flex;flex-direction:column;gap:1px;border-bottom:1px solid var(--bdr)}
+.pk:last-child{border-bottom:0}
+.pk:hover{background:var(--hovo)}
+.pk small{font-size:11.5px;color:var(--mt)}
+.pk.none{color:var(--mt);cursor:default}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 6px 4px 12px;border-radius:99px;background:rgba(59,130,246,.15);color:var(--bl3);font-size:12.5px;font-weight:700}
+.chip button{height:22px;width:22px;padding:0;background:transparent;border:0;color:inherit;font-size:13px;border-radius:50%}
+.ed-g label.full{grid-column:1/-1}
+#t-visits>.card{overflow:visible}
+dialog#ved,dialog#np,dialog#cv{border:1px solid var(--bdr2);border-radius:16px;background:var(--card);color:var(--tx);padding:0;margin:auto;width:min(460px,calc(100vw - 20px));max-height:calc(100vh - 20px);overflow:auto;box-shadow:var(--sh)}
+dialog#ved::backdrop,dialog#np::backdrop,dialog#cv::backdrop{background:rgba(0,0,0,.55)}
+
+.gadd{flex:1;min-width:260px}
+.rw{display:flex;align-items:center;gap:10px;padding:8px 10px;min-height:62px;background:var(--bg3);border:1px solid var(--bdr);border-radius:12px}
+.rw.done{background:var(--card)}
+.rw.abs{opacity:.6;background:transparent;border-style:dashed}
+.rw-t{width:44px;height:44px;flex:none;padding:0;border-radius:12px;font-size:20px;background:var(--gr2)}
+.rw.abs .rw-t{background:var(--rd2)}
+.rw.done .rw-t{background:var(--bg2);color:var(--gr3);border-color:var(--bdr2);cursor:default}
+.rw-i{flex:1;min-width:0;cursor:pointer;display:flex;flex-direction:column;gap:2px}
+.rw.done .rw-i{cursor:default}
+.rw-i b{font-size:14.5px;line-height:1.35}
+.rw-i small{font-size:11.5px;color:var(--mt);display:flex;flex-wrap:wrap;gap:2px 8px;align-items:center}
+.rw-e{height:40px;padding:0 14px;flex:none;font-size:13px}
+dialog#ed{border:1px solid var(--bdr2);border-radius:16px;background:var(--card);color:var(--tx);padding:0;margin:auto;width:min(440px,calc(100vw - 20px));max-height:calc(100vh - 20px);overflow:auto;box-shadow:var(--sh)}
+dialog#ed::backdrop{background:rgba(0,0,0,.55)}
+.ed-h{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--bdr)}
+.ed-h b{flex:1;font-size:15px}
+.ed-b{padding:14px;display:flex;flex-direction:column;gap:12px}
+.ed-g{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ed-b input,.ed-b select{width:100%;height:46px;font-size:16px}
+.ed-b .seg button{flex:1;height:44px}
+.ed-f{display:flex;gap:8px;padding:12px 14px;border-top:1px solid var(--bdr)}
+.ed-f button{flex:1;height:46px}
+
+
+.copyg{display:flex;gap:6px;align-items:center}
+.copyg select{height:36px;font-size:12.5px}
+.copyg button{height:36px;padding:0 12px}
+/* كشف الطباعة */
+#prt{display:none;background:#fff;color:#000;font:12px/1.5 'Tajawal',sans-serif}
+#prt h2{font-size:17px;text-align:center;margin-bottom:2px}
+#prt .pm{text-align:center;font-size:12px;margin-bottom:8px}
+#prt table{width:100%;font-size:11px;border-collapse:collapse}
+#prt th,#prt td{border:1px solid #000;padding:3px 5px;text-align:center;white-space:normal;background:#fff;color:#000;position:static}
+#prt th{background:#e5e7eb;font-weight:700}
+#prt tr.tot td{font-weight:800;background:#f3f4f6}
+#prt .sg{display:flex;justify-content:space-around;margin-top:42px;font-size:12px}
+@media print{@page{size:A4 landscape;margin:10mm}body.printing{background:#fff;display:block;padding:0}body.printing>*:not(#prt){display:none!important}body.printing #prt{display:block}}
+@media (max-width:900px){
+  #app{display:block}
+  aside{position:fixed;left:0;right:0;bottom:0;top:auto;width:auto;height:calc(60px + env(safe-area-inset-bottom));z-index:50;border-inline-end:0;border-top:1px solid var(--bdr);flex-direction:row}
+  aside .brand,aside .user,nav small{display:none}
+  nav{display:flex;flex:1;gap:2px;padding:4px 6px calc(4px + env(safe-area-inset-bottom));overflow-x:auto}
+  nav button{width:auto;flex:1 0 auto;min-width:68px;height:52px;margin:0;padding:4px 8px;flex-direction:column;justify-content:center;gap:2px;font-size:11px;white-space:nowrap}
+  nav button svg{width:20px;height:20px}
+  .topbar{position:sticky;top:0;z-index:40;padding:10px 12px}
+  .topbar h1{font-size:16px}
+  .topbar p,.today{display:none}
+  .tbtns{display:flex}
+  main{padding:10px 10px calc(150px + env(safe-area-inset-bottom))}
+  input,select,textarea{height:44px;font-size:16px}
+  input[type=checkbox]{height:20px;width:20px}
+  button{height:44px}
+  .tgrp button,.seg button,.copyg button,.copyg select{height:42px}
+  td button.ghost,button.danger{height:36px}
+  button.ic{width:40px;height:40px}
+  .toolbar{padding:10px;gap:8px}
+  .tgrp,.seg,.more,.copyg{width:100%}
+  .tgrp{gap:6px}
+  .search{flex-basis:100%;min-width:100%}
+  .seg button{flex:1;padding:0 4px;font-size:13px}
+  .copyg select{flex:1}
+  .pcards{grid-template-columns:1fr;padding:10px;gap:8px}
+  .gadd{flex-basis:100%;min-width:100%}
+  .rw-e{height:42px}
+  dialog#ed,dialog#ved,dialog#np,dialog#cv{margin:auto auto 0;width:100vw;max-width:100vw;border-radius:16px 16px 0 0;padding-bottom:env(safe-area-inset-bottom)}
+  .gbar{bottom:calc(60px + env(safe-area-inset-bottom));padding:10px 12px;border-radius:0}
+  .gbar button{flex:1;max-width:60%}
+  .help{padding:8px 12px}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(min(150px,100%),1fr));gap:10px}
+  .sum{grid-template-columns:1fr 1fr;padding:10px}
+  th,td{padding:8px 10px}
+  .card>.cb{padding:12px}
+  #toast{bottom:calc(130px + env(safe-area-inset-bottom));width:calc(100vw - 24px);text-align:center}
+}
+</style>
+</head>
+<body>
+
+<button class="theme-toggle ghost themebtn" id="themeBtn" type="button"></button>
+
+<div id="login">
+  <div class="logo">
+    <img class="logo-img" alt="">
+    <div class="logo-title">نظام مركز غسيل الكلية</div>
+    <div class="logo-sub">وزارة الصحة الفلسطينية — مركز غسيل الكلية - الزوايدة الميداني</div>
+  </div>
+  <div class="conn"><span class="dot" id="connDot"></span><span id="connText">جارٍ التحقق من الاتصال بقاعدة البيانات...</span></div>
+  <div class="form-title">تسجيل الدخول إلى النظام</div>
+  <form id="lf">
+    <div class="field"><label for="le">اسم المستخدم</label>
+      <div class="inp-wrap"><input id="le" type="text" placeholder="أدخل اسم المستخدم" autocomplete="username" autocapitalize="none" spellcheck="false"></div></div>
+    <div class="field"><label for="lp">كلمة المرور</label>
+      <div class="inp-wrap"><input id="lp" type="password" placeholder="أدخل كلمة المرور" autocomplete="current-password">
+        <button class="eye" id="eyeBtn" type="button" aria-label="إظهار كلمة المرور">إظهار</button></div></div>
+    <button class="btn-login" id="loginBtn"><span id="btnText">دخول</span><span class="spin" id="btnSpin" hidden></span></button>
+  </form>
+  <div class="msg" id="msgBox" hidden></div>
+  <div class="hint">حسابات الدخول تُطلب من الإدارة العامة للمستشفيات</div>
+  <div class="footer">جميع الاتصالات مشفرة · لا تشارك بيانات دخولك مع أحد</div>
+</div>
+
+<div id="app" hidden>
+  <aside>
+    <div class="brand"><img class="logo-img sm" alt=""><div><b>مركز غسيل الكلية</b><span>الزوايدة الميداني</span></div></div>
+    <nav>
+      <small>الإدخال اليومي</small>
+      <button data-t="sessions" data-i="sessions">جلسات الغسيل</button>
+      <button data-t="visits" data-i="visits">العيادة الخارجية</button>
+      <small>البيانات</small>
+      <button data-t="patients" data-i="patients" class="on">المرضى</button>
+      <button data-t="import" data-i="import" id="navim" hidden>استيراد المرضى</button>
+      <small id="navsm">التقارير والإدارة</small>
+      <button data-t="reports" data-i="reports" id="navrp" hidden>التقارير</button>
+      <button data-t="lookups" data-i="lookups" id="navlk" hidden>الثوابت</button>
+      <button data-t="users" data-i="user" id="navus" hidden>المستخدمون</button>
+    </nav>
+    <div class="user">
+      <div class="urow"><div class="av" id="avt">؟</div><div class="uinfo"><b id="who">—</b><span id="rolel"></span></div>
+        <button class="ic" id="out" type="button" title="تسجيل الخروج" aria-label="تسجيل الخروج"><svg class="i" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></button></div>
+      <button class="ghost themebtn" id="themeBtn2" type="button"></button>
+    </div>
+  </aside>
+  <div class="content">
+  <div class="topbar"><div><h1 id="pgt">إدارة المرضى</h1><p id="pgs"></p></div><div class="today" id="tdy"></div>
+    <div class="tbtns"><button class="ic" id="themeBtn3" type="button" title="تبديل المظهر" aria-label="تبديل المظهر"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor"/></svg></button><button class="ic" id="out2" type="button" title="تسجيل الخروج" aria-label="تسجيل الخروج"><svg class="i" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></button></div></div>
+  <main>
+
+  <section id="t-patients">
+    <div class="card"><div class="ch">بحث وفلترة</div><div class="cb"><div class="grid">
+      <label>بحث (الاسم / الهوية / رقم GZ)<input id="ps" placeholder="مثال: محمد*علي أو 4012* أو GZ-0012" autocomplete="off"></label>
+      <label>نوع المريض<select id="pft"><option value="">الكل</option><option value="dialysis">غسيل كلوي</option><option value="outpatient">عيادة خارجية</option></select></label>
+      <label style="flex-direction:row;align-items:center;gap:6px;padding-top:20px"><input type="checkbox" id="pfa" checked> الفعّالون فقط</label>
+      <div class="row" style="padding-top:16px"><button id="pnew">إضافة مريض</button></div>
+    </div></div></div>
+
+    <div class="card" id="pform" hidden>
+      <div class="ch" id="ptitle">مريض جديد</div><div class="cb">
+      <div class="grid">
+        <label>نوع المريض<select id="pt"><option value="dialysis">غسيل كلوي</option><option value="outpatient">عيادة خارجية</option></select></label>
+        <label>الاسم الكامل<input id="pn"></label>
+        <label>رقم الهوية (9 أرقام)<input id="pi" maxlength="9" inputmode="numeric"></label>
+        <label>الجنس<select id="pg"><option value="male">ذكر</option><option value="female">أنثى</option></select></label>
+        <label>تاريخ الميلاد<input id="pbd" type="date"></label>
+        <label>الإقامة<select id="pr"><option value="resident">مقيم</option><option value="refugee">لاجئ</option></select></label>
+        <label>حالة المريض<select id="ph"><option>Normal</option><option>HBV</option><option>HCV</option></select></label>
+      </div>
+      <div class="grid" id="pmgr" hidden style="margin-top:10px">
+        <label style="flex-direction:row;align-items:center;gap:6px"><input type="checkbox" id="pa"> المريض فعّال</label>
+        <label>سبب عدم الفعالية<select id="pre"><option value="deceased">متوفي</option><option value="traveled">مسافر</option><option value="other">غيره</option></select></label>
+      </div>
+      <div class="row" style="margin-top:12px"><button id="psave">حفظ المريض</button><button id="pcancel" class="ghost">إلغاء</button></div>
+    </div></div>
+
+    <div class="card"><div class="ch">قائمة المرضى</div><div class="tw"><table id="ptb"></table></div><p id="pcnt" class="mut"></p></div>
+  </section>
+
+  <section id="t-sessions" hidden>
+    <div class="card">
+      <div class="toolbar">
+        <div class="tgrp dnav">
+          <button class="ghost" id="dprev" type="button" aria-label="اليوم السابق">السابق</button>
+          <input id="sd" type="date" aria-label="تاريخ الجلسات">
+          <button class="ghost" id="dnext" type="button" aria-label="اليوم التالي">التالي</button>
+          <button class="ghost" id="dtoday" type="button">اليوم</button>
+        </div>
+        <div class="pkw gadd"><input id="gadd" placeholder="＋ إضافة مريض لهذا اليوم (اسم، هوية، أو GZ — * لأي جزء)" autocomplete="off"><div id="gaddl" class="pkl" hidden></div></div>
+        <div class="search"><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input id="gs" placeholder="بحث في القائمة (* لأي جزء)" autocomplete="off"></div>
+        <div class="seg" id="gf"><button type="button" data-f="all" class="on">الكل</button><button type="button" data-f="new">غير المسجل</button><button type="button" data-f="abs">الغائبون</button><button type="button" data-f="saved">المسجل</button></div>
+        <details class="more"><summary>خيارات إضافية</summary><div class="morei">
+          <button class="ghost" id="greset" type="button">إعادة ضبط اليوم</button>
+          <button class="ghost" id="gprint" type="button">طباعة كشف اليوم</button>
+        </div></details>
+      </div>
+      <div id="fri" class="note warn" hidden>يوم الجمعة إجازة: الجلسات هنا إسعافية فقط.</div>
+      <p class="help">الجميع حاضرون تلقائيًا: اضغط على الغائب لاستبعاده. ولإدخال التحاليل والوحدات الدوائية والإحالة اضغط «إدخال».</p>
+      <div id="gtb" class="pcards"></div>
+      <div class="gbar"><span id="gcnt" class="mut"></span><button id="gsave" type="button" disabled>حفظ الجلسات (0)</button></div>
+    </div>
+    <div class="card"><div class="ch">ملخص جلسات اليوم</div><div class="sum" id="ssum"></div><div class="tw"><table id="stb"></table></div></div>
+  </section>
+
+  <section id="t-visits" hidden>
+    <div class="card">
+      <div class="toolbar">
+        <div class="tgrp dnav">
+          <button class="ghost" id="vprev" type="button" aria-label="اليوم السابق">السابق</button>
+          <input id="vd" type="date" aria-label="تاريخ الزيارات">
+          <button class="ghost" id="vnext" type="button" aria-label="اليوم التالي">التالي</button>
+          <button class="ghost" id="vtoday" type="button">اليوم</button>
+        </div>
+        <div class="pkw gadd"><input id="vadd" placeholder="＋ إضافة مريض لهذا اليوم (اسم، هوية، أو GZ — * لأي جزء)" autocomplete="off"><div id="vaddl" class="pkl" hidden></div></div>
+        <button class="ghost" id="vnew" type="button">＋ مريض جديد</button>
+        <div class="search"><svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input id="vs" placeholder="بحث في القائمة (* لأي جزء)" autocomplete="off"></div>
+        <div class="seg" id="vflt"><button type="button" data-f="all" class="on">الكل</button><button type="button" data-f="new">غير المسجل</button><button type="button" data-f="abs">الغائبون</button><button type="button" data-f="saved">المسجل</button></div>
+      </div>
+      <p class="help">الجميع حاضرون تلقائيًا: اضغط على الغائب لاستبعاده. ولإدخال التشخيص والتحاليل والإحالة اضغط «إدخال». مريض الغسيل يُضاف من خانة الإضافة ويبقى مريض غسيل.</p>
+      <div id="vlist" class="pcards"></div>
+      <div class="gbar"><span id="vcnt" class="mut"></span><button id="vsave" type="button" disabled>حفظ الزيارات (0)</button></div>
+    </div>
+    <div class="card"><div class="ch">ملخص زيارات اليوم</div><div class="sum" id="vsum"></div><div class="tw"><table id="vtb"></table></div></div>
+  </section>
+
+  <section id="t-lookups" hidden>
+    <div class="card"><div class="ch">إضافة عناصر إلى الثوابت</div><div class="cb">
+      <div class="grid">
+        <label>الجدول<select id="lks"></select></label>
+        <label id="lkph" hidden>الصيدلية<select id="lkpt"><option value="internal">الداخلية</option><option value="external">الخارجية</option></select></label>
+      </div>
+      <label style="margin-top:12px">العناصر: سطر لكل عنصر<span id="lkhint"></span><textarea id="lkbulk" rows="5" style="height:auto;padding:10px"></textarea></label>
+      <div class="row" style="margin-top:10px"><button id="lkadd">إضافة العناصر</button></div>
+    </div></div>
+    <div class="card"><div class="ch">العناصر الحالية</div><div class="tw"><table id="lktb"></table></div></div>
+  </section>
+
+  <section id="t-import" hidden>
+    <div class="card"><div class="ch">استيراد المرضى من ملف Excel (للمدير)</div><div class="cb">
+      <p class="mut" style="padding:0 0 10px">يقرأ ورقة Patients بأعمدتها: معرف المريض، نوع المريض، اسم المريض، رقم الهوية، الجنس، سنة الميلاد (تاريخ كامل)، حالة الإقامة، حالة المريض. يُحفظ رمز GZ كما في الملف، ويُحدَّث المريض إن كانت هويته مسجلة.</p>
+      <div class="grid">
+        <label>ملف Excel<input id="imf" type="file" accept=".xlsx"></label>
+        <label>تحويل «نازح» إلى<select id="imd"><option value="">رفض الصف</option><option value="resident">مقيم</option><option value="refugee">لاجئ</option></select></label>
+      </div>
+      <div class="row" style="margin-top:12px"><button id="imcheck" type="button">فحص الملف</button><button id="imgo" type="button" hidden>اعتماد الاستيراد</button></div>
+      <div id="imres" style="margin-top:12px"></div>
+    </div></div>
+  </section>
+
+  <section id="t-users" hidden>
+    <div class="card"><div class="ch">إضافة مستخدم</div><div class="cb">
+      <div class="grid">
+        <label>الاسم الكامل<input id="un" autocomplete="off"></label>
+        <label>اسم المستخدم (بالإنجليزية)<input id="uu" autocomplete="off" autocapitalize="none" spellcheck="false" dir="ltr" placeholder="مثال: ahmad.k"></label>
+        <label>الصلاحية<select id="ur"><option value="data_entry">مدخل بيانات</option><option value="manager">مدير النظام</option></select></label>
+        <label>كلمة المرور (8 أحرف فأكثر)<input id="up" type="text" autocomplete="new-password" dir="ltr" spellcheck="false"></label>
+      </div>
+      <div class="row" style="margin-top:12px"><button class="ghost" id="ugen" type="button">توليد كلمة مرور</button><button id="uadd" type="button">إنشاء الحساب</button></div>
+      <div id="ures" class="msg ok" hidden></div>
+    </div></div>
+    <div class="card"><div class="ch">المستخدمون</div><div class="tw"><table id="utb"></table></div></div>
+    <div class="card"><div class="ch">الصلاحيات حسب الدور</div><div class="tw"><table id="uperm"></table></div></div>
+  </section>
+
+  <section id="t-reports" hidden>
+    <div class="card"><div class="ch">تصدير التقرير الإحصائي (Excel)</div><div class="cb">
+      <div class="row" style="margin-bottom:12px">
+        <button class="ghost" data-r="wcur" type="button">الأسبوع الحالي</button>
+        <button class="ghost" data-r="wprev" type="button">الأسبوع الماضي</button>
+        <button class="ghost" data-r="mcur" type="button">الشهر الحالي</button>
+        <button class="ghost" data-r="mprev" type="button">الشهر الماضي</button>
+      </div>
+      <div class="row" style="margin-bottom:12px;align-items:flex-end">
+        <label style="width:100px">السنة<input id="ry" type="number" min="2000" max="2100"></label>
+        <button class="ghost" data-r="q1" type="button">الربع الأول</button>
+        <button class="ghost" data-r="q2" type="button">الربع الثاني</button>
+        <button class="ghost" data-r="h1" type="button">التقرير النصفي</button>
+        <button class="ghost" data-r="q3" type="button">الربع الثالث</button>
+        <button class="ghost" data-r="q4" type="button">الربع الرابع</button>
+        <button class="ghost" data-r="y" type="button">التقرير السنوي</button>
+      </div>
+      <div class="grid">
+        <label>من تاريخ<input id="rf" type="date"></label>
+        <label>إلى تاريخ<input id="rt" type="date"></label>
+      </div>
+      <div class="row" style="margin-top:14px"><button id="rgo" type="button">تصدير ملف التقرير</button><span id="rmsg" class="mut"></span></div>
+    </div></div>
+  </section>
+
+  </main>
+  </div>
+</div>
+<div id="toast" hidden></div>
+<div id="prt"></div>
+<dialog id="ed" aria-label="إدخال بيانات الجلسة">
+  <div class="ed-h"><b id="edn"></b><span id="edc" class="mut" style="padding:0"></span><button class="ic" id="edx" type="button" aria-label="إغلاق">✕</button></div>
+  <div class="ed-b">
+    <div class="seg" id="edt"><button type="button" data-v="scheduled">مجدولة</button><button type="button" data-v="emergency">إسعافية</button></div>
+    <div class="ed-g">
+      <label>وحدات داخلية<input id="edi" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0"></label>
+      <label>وحدات خارجية<input id="edx2" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0"></label>
+      <label>تحاليل<input id="edl" type="number" inputmode="numeric" min="0" placeholder="0"></label>
+      <label>أشعة<input id="edr" type="number" inputmode="numeric" min="0" placeholder="0"></label>
+    </div>
+    <label>الإحالة</label>
+    <div class="seg" id="edf"><button type="button" data-v="">لا</button><button type="button" data-v="yes">نعم</button></div>
+    <div class="ed-g" id="edrf" hidden>
+      <label>جهة الإحالة<select id="edd"></select></label>
+      <label>عدد الإحالات<input id="edn2" type="number" inputmode="numeric" min="1" placeholder="1"></label>
+    </div>
+  </div>
+  <div class="ed-f"><button class="ghost" id="edp" type="button">السابق</button><button id="ednx" type="button">التالي</button></div>
+</dialog>
+<dialog id="ved" aria-label="إدخال بيانات زيارة العيادة">
+  <div class="ed-h"><b id="vedn"></b><span id="vedc" class="mut" style="padding:0"></span><button class="ic" id="vedx" type="button" aria-label="إغلاق">✕</button></div>
+  <div class="ed-b">
+    <button class="ghost" id="vedcv" type="button" hidden>قرار الطبيب: تحويل إلى مريض غسيل</button>
+    <label>التشخيص (من أمراض الكلى)</label>
+    <div class="pkw" style="min-width:0"><input id="vdxi" placeholder="ابحث عن تشخيص… (* لأي جزء)" autocomplete="off"><div id="vdxl" class="pkl" hidden></div></div>
+    <div id="vdxc" class="chips"></div>
+    <div class="ed-g">
+      <label>تحاليل<input id="vedl" type="number" inputmode="numeric" min="0" placeholder="0"></label>
+      <label>أشعة<input id="vedr" type="number" inputmode="numeric" min="0" placeholder="0"></label>
+      <label>وحدات دوائية خارجية<input id="vedu" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0"></label>
+    </div>
+    <label>الإحالة</label>
+    <div class="seg" id="vedf"><button type="button" data-v="">لا</button><button type="button" data-v="yes">نعم</button></div>
+    <div class="ed-g" id="vedrf" hidden>
+      <label>جهة الإحالة<select id="vedd"></select></label>
+      <label>عدد الإحالات<input id="vedn2" type="number" inputmode="numeric" min="1" placeholder="1"></label>
+      <label class="full">سبب الإحالة (اختياري)<input id="vedrs" type="text"></label>
+    </div>
+  </div>
+  <div class="ed-f"><button class="ghost" id="vedp" type="button">السابق</button><button id="vednx" type="button">التالي</button></div>
+</dialog>
+<dialog id="cv" aria-label="تحويل إلى مريض غسيل">
+  <div class="ed-h"><b>تحويل إلى مريض غسيل</b><button class="ic" id="cvx" type="button" aria-label="إغلاق">✕</button></div>
+  <div class="ed-b">
+    <p id="cvn" style="font-weight:800"></p>
+    <label>تاريخ قرار الطبيب<input id="cvd" type="date"></label>
+    <label>الطبيب أو سبب القرار<input id="cvr" autocomplete="off" placeholder="مثال: د. أحمد، وصول المريض للمرحلة الخامسة"></label>
+    <p class="mut" style="padding:0">بعد التحويل يظهر المريض في قوائم الغسيل ويبقى بإمكانه زيارة العيادة. تبقى زياراته السابقة كما هي، ويُسجَّل التحويل مع اسم من نفّذه.</p>
+  </div>
+  <div class="ed-f"><button class="ghost" id="cvc" type="button">إلغاء</button><button id="cvs" type="button">تأكيد التحويل</button></div>
+</dialog>
+<dialog id="np" aria-label="مريض جديد للعيادة">
+  <div class="ed-h"><b>مريض جديد للعيادة الخارجية</b><button class="ic" id="npx" type="button" aria-label="إغلاق">✕</button></div>
+  <div class="ed-b">
+    <label>الاسم الكامل<input id="npn" autocomplete="off"></label>
+    <div class="ed-g">
+      <label>رقم الهوية (9 أرقام)<input id="npi" maxlength="9" inputmode="numeric"></label>
+      <label>تاريخ الميلاد<input id="npb" type="date"></label>
+      <label>الجنس<select id="npg"><option value="male">ذكر</option><option value="female">أنثى</option></select></label>
+      <label>الإقامة<select id="npr"><option value="resident">مقيم</option><option value="refugee">لاجئ</option></select></label>
+      <label class="full">حالة المريض<select id="nph"><option>Normal</option><option>HBV</option><option>HCV</option></select></label>
+    </div>
+  </div>
+  <div class="ed-f"><button class="ghost" id="npc" type="button">إلغاء</button><button id="nps" type="button">حفظ وبدء الزيارة</button></div>
+</dialog>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/exceljs@4.4.0/dist/exceljs.min.js"></script>
+<script>
+/* ===== إعدادات المشروع: ضع القيمتين من Supabase > Project Settings > API ===== */
+const SUPABASE_URL = 'https://bfmfdvejcoijqucdtfbj.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJmbWZkdmVqY29panF1Y2R0ZmJqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE3MzM0OTAsImV4cCI6MjEwNzMwOTQ5MH0.IvMjlarrRyXY_ipnVwFiQ6jgHwOYS3DvTZFnXY-_B50';   // المفتاح العام anon فقط، لا تضع service_role هنا أبدًا
+
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const L = {male:'ذكر',female:'أنثى',resident:'مقيم',refugee:'لاجئ',dialysis:'غسيل كلوي',outpatient:'عيادة خارجية',
+  child:'طفل',adult:'بالغ',scheduled:'مجدولة',emergency:'إسعافية',deceased:'متوفي',traveled:'مسافر',other:'غيره'};
+let me = null, pats = [], drugs = [], plist = [];
+const isMgr = () => me && me.role === 'manager';
+
+function msg(t, bad) {
+  const el = $('#toast'); el.textContent = t; el.className = bad ? 'bad' : ''; el.hidden = false;
+  clearTimeout(msg.t); msg.t = setTimeout(() => el.hidden = true, bad ? 6000 : 2500);
+}
+function errText(e) {
+  const m = e.message || '';
+  if (e.code === '23505') return m.includes('national_id') ? 'رقم الهوية مسجل مسبقًا' : 'هذا السجل مسجل مسبقًا (تكرار)';
+  if (e.code === '42501') return 'ليست لديك صلاحية لهذه العملية';
+  if (e.code === '23514') return 'قيمة غير صالحة، راجع البيانات المدخلة';
+  return m;
+}
+const today = () => { const d = new Date(); d.setMinutes(d.getMinutes() - d.getTimezoneOffset()); return d.toISOString().slice(0, 10); };
+
+/* ===== البحث الموحد: * لأي جزء، ? لحرف واحد، مع توحيد الهمزات والتاء المربوطة؛ الاسم أو الهوية أو رمز GZ ===== */
+const norm = s => String(s ?? '').replace(/[ً-ٰٟـ]/g, '').replace(/[أإآٱ]/g, 'ا').replace(/ى/g, 'ي').replace(/ة/g, 'ه').replace(/\s+/g, ' ').trim().toLowerCase();
+const qre = q => { const n = norm(q); if (!n) return null; try { return new RegExp(n.replace(/[.+^${}()|[\]\\]/g, '\\$&').replace(/\*/g, '.*').replace(/\?/g, '.')); } catch (e) { return null; } };
+const im = (it, q) => { const re = qre(q); return !re || re.test(it.hay) || re.test(it.nid || '') || re.test(it.code || ''); };
+const pk = p => p._k ||= { hay: norm(p.full_name), nid: String(p.national_id), code: String(p.patient_code).toLowerCase() };
+const pm = (p, q) => im(pk(p), q);
+const pitem = p => ({ ...pk(p), label: p.full_name, sub: `${p.patient_code} · ${p.national_id}${p.patient_type === 'dialysis' ? ' · غسيل' : ''}`, p });
+/* قائمة اقتراحات تحت خانة الكتابة */
+function picker(inp, box, pool, pick, limit = 8) {
+  const show = () => {
+    const q = inp.value.trim(), items = pool().filter(it => im(it, q)).slice(0, limit);
+    box._it = items;
+    box.innerHTML = items.length ? items.map((it, i) => `<div class="pk" data-i="${i}"><b>${esc(it.label)}</b>${it.sub ? `<small>${esc(it.sub)}</small>` : ''}</div>`).join('') : '<div class="pk none">لا توجد نتائج</div>';
+    box.hidden = false;
+  };
+  const choose = it => { if (!it) return; inp.value = ''; box.hidden = true; pick(it); };
+  inp.addEventListener('input', show); inp.addEventListener('focus', show);
+  inp.addEventListener('blur', () => setTimeout(() => box.hidden = true, 250));
+  inp.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); if (!box.hidden) choose(box._it?.[0]); } else if (e.key === 'Escape') box.hidden = true; });
+  box.addEventListener('click', e => { const el = e.target.closest('.pk[data-i]'); if (el) choose(box._it[+el.dataset.i]); });
+}
+
+/* ===== الدخول ===== */
+async function boot() {
+  const { data: { session } } = await sb.auth.getSession();
+  if (!session) return showLogin();
+  const { data, error } = await sb.from('app_users').select('full_name,role,is_active').eq('id', session.user.id).maybeSingle();
+  if (error || !data || !data.is_active) { await sb.auth.signOut(); return showLogin('هذا الحساب غير مفعّل في النظام. راجع المدير.'); }
+  me = { ...data, id: session.user.id };
+  $('#login').hidden = true; $('#app').hidden = false; document.body.classList.remove('lg');
+  $('#who').textContent = data.full_name; $('#rolel').textContent = isMgr() ? 'مدير النظام' : 'مدخل بيانات'; $('#avt').textContent = data.full_name.trim().charAt(0) || '؟'; $('#tdy').textContent = new Date().toLocaleDateString('ar-u-nu-latn', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+  $('#sd').value = today(); $('#navlk').hidden = $('#navim').hidden = $('#navrp').hidden = $('#navsm').hidden = $('#navus').hidden = !isMgr();
+  await lookups();
+  tab('sessions');
+}
+function showLogin(m) { $('#app').hidden = true; $('#login').hidden = false; document.body.classList.add('lg'); $('#msgBox').hidden = true; if (m) showMsg(m, 'err'); setTimeout(() => $('#le').focus(), 200); }
+function showMsg(t, type) { const b = $('#msgBox'); b.className = 'msg ' + type; b.textContent = t; b.hidden = false; }
+function loading(on) { $('#loginBtn').disabled = on; $('#btnText').hidden = on; $('#btnSpin').hidden = !on; }
+const USER_DOMAIN = 'dialysis.local';   // اسم المستخدم يتحول إلى username@dialysis.local في Supabase Auth
+let attempts = 0, lockUntil = 0;
+$('#lf').onsubmit = async e => {
+  e.preventDefault();
+  if (Date.now() < lockUntil) return showMsg('⛔ محاولات كثيرة. انتظر ' + Math.ceil((lockUntil - Date.now()) / 1000) + ' ثانية', 'err');
+  const u = $('#le').value.trim().toLowerCase(), p = $('#lp').value;
+  if (!u || !p) return showMsg('⚠️ يرجى إدخال اسم المستخدم وكلمة المرور', 'err');
+  loading(true); showMsg('⏳ جاري التحقق...', 'ok');
+  const { error } = await sb.auth.signInWithPassword({ email: u.includes('@') ? u : u + '@' + USER_DOMAIN, password: p });
+  loading(false);
+  if (error) {
+    if (++attempts >= 5) { lockUntil = Date.now() + 60000; attempts = 0; return showMsg('⛔ تم تجاوز عدد المحاولات. محظور لمدة دقيقة', 'err'); }
+    return showMsg('❌ اسم المستخدم أو كلمة المرور غير صحيحة', 'err');
+  }
+  attempts = 0; $('#lp').value = ''; boot();
+};
+$('#eyeBtn').onclick = () => { const i = $('#lp'), h = i.type === 'password'; i.type = h ? 'text' : 'password'; $('#eyeBtn').textContent = h ? '🙈' : '👁️'; };
+$('#out').onclick = async () => { await sb.auth.signOut(); me = null; showLogin(); };
+
+const TT = { sessions: 'جلسات الغسيل اليومية', visits: 'العيادة الخارجية', patients: 'إدارة المرضى', lookups: 'إدارة الثوابت', import: 'استيراد المرضى من Excel', reports: 'التقارير', users: 'المستخدمون والصلاحيات' };
+const SUB = { sessions: 'سجّل حضور مرضى الغسيل وبيانات كل جلسة في جدول واحد', visits: 'سجّل زيارات العيادة الخارجية والتشخيصات بنفس آلية جلسات الغسيل', patients: 'البحث عن المرضى وإضافتهم وتعديل بياناتهم', lookups: 'الأدوية والتشخيصات وجهات الإحالة', import: 'استيراد قائمة المرضى من ملف Excel مع الاحتفاظ بالرموز', reports: 'تصدير التقرير الإحصائي الأسبوعي أو الشهري أو الربعي أو السنوي', users: 'إنشاء حسابات الدخول وإدارة أدوار المستخدمين' };
+function tab(t) {
+  window.scrollTo(0, 0);
+  document.querySelectorAll('nav button').forEach(b => b.classList.toggle('on', b.dataset.t === t));
+  Object.keys(TT).forEach(k => $('#t-' + k).hidden = k !== t);
+  $('#pgt').textContent = TT[t]; $('#pgs').textContent = SUB[t];
+  ({ sessions: loadSessions, visits: loadVisits, patients: loadPatients, lookups: loadLookups, import: () => {}, reports: initReports, users: loadUsers })[t]();
+}
+document.querySelectorAll('nav button[data-t]').forEach(b => b.onclick = () => tab(b.dataset.t));
+
+let opats = [], dxs = [], destOpts = '', dests = [];
+async function lookups() {
+  const [d, r, p, x] = await Promise.all([
+    sb.from('drugs').select('id,name,unit,pharmacy_type').eq('is_active', true).order('name'),
+    sb.from('referral_destinations').select('id,name').eq('is_active', true).order('name'),
+    sb.from('v_patients').select('id,patient_code,full_name,national_id,gender,birth_year,age_category,residency,health_status,patient_type').eq('is_active', true).order('patient_code').limit(4000),
+    sb.from('diagnoses').select('id,name').eq('is_active', true).order('name')]);
+  drugs = d.data || []; dxs = x.data || [];
+  const all = p.data || []; pats = all.filter(y => y.patient_type === 'dialysis'); opats = all;
+  const dest = '<option value="">—</option>' + (r.data || []).map(y => `<option value="${y.id}">${esc(y.name)}</option>`).join('');
+  destOpts = dest; dests = r.data || [];
+}
+
+/* ===== المرضى ===== */
+let pcache = [];
+async function loadPatients() {
+  let q = sb.from('v_patients').select('*').order('patient_code', { ascending: false }).limit(4000);
+  if ($('#pft').value) q = q.eq('patient_type', $('#pft').value);
+  if ($('#pfa').checked) q = q.eq('is_active', true);
+  const { data, error } = await q;
+  if (error) return msg(errText(error), true);
+  pcache = data; renderPatients();
+}
+function renderPatients() {
+  const all = pcache.filter(p => pm(p, $('#ps').value)), data = all.slice(0, 200);
+  plist = data;
+  $('#ptb').innerHTML = '<tr><th>الرقم</th><th>الاسم</th><th>الهوية</th><th>النوع</th><th>الجنس</th><th>سنة الميلاد</th><th>العمر</th><th>الفئة</th><th>الإقامة</th><th>الحالة</th><th>الفعالية</th><th></th></tr>' +
+    data.map(p => `<tr><td>${esc(p.patient_code)}</td><td>${esc(p.full_name)}</td><td>${esc(p.national_id)}</td><td>${L[p.patient_type]}</td><td>${L[p.gender]}</td><td>${p.birth_year}</td><td>${p.age}</td><td>${L[p.age_category]}</td><td>${L[p.residency]}</td>
+      <td><span class="tag ${p.health_status.toLowerCase()}">${p.health_status}</span></td>
+      <td>${p.is_active ? 'فعّال' : '<span class="tag off">' + L[p.inactive_reason] + '</span>'}</td>
+      <td>${isMgr() ? `<button class="ghost" data-e="${p.id}">تعديل</button> ` : ''}${p.patient_type === 'outpatient' && p.is_active ? `<button class="ghost" data-cv="${p.id}">تحويل إلى غسيل</button>` : ''}</td></tr>`).join('');
+  $('#pcnt').textContent = all.length ? `عدد المطابقين: ${all.length}${all.length > 200 ? ' (يُعرض أول 200، حدّد البحث أكثر)' : ''}` : 'لا يوجد مرضى مطابقون. أضف مريضًا أو غيّر البحث.';
+  document.querySelectorAll('[data-e]').forEach(b => b.onclick = () => openForm(plist.find(x => x.id == b.dataset.e)));
+  document.querySelectorAll('[data-cv]').forEach(b => b.onclick = () => cvOpen(b.dataset.cv));
+}
+let tmr; $('#ps').oninput = () => { clearTimeout(tmr); tmr = setTimeout(renderPatients, 150); };
+$('#pft').onchange = $('#pfa').onchange = loadPatients;
+
+function openForm(p) {
+  $('#pform').hidden = false; $('#pform').dataset.id = p ? p.id : '';
+  $('#ptitle').textContent = p ? 'تعديل مريض: ' + p.patient_code : 'مريض جديد';
+  $('#pt').value = p?.patient_type || 'dialysis'; $('#pn').value = p?.full_name || ''; $('#pi').value = p?.national_id || '';
+  $('#pg').value = p?.gender || 'male'; $('#pbd').value = p?.birth_date || ''; $('#pr').value = p?.residency || 'resident';
+  $('#ph').value = p?.health_status || 'Normal';
+  $('#pmgr').hidden = !(p && isMgr());
+  $('#pa').checked = p ? p.is_active : true; $('#pre').value = p?.inactive_reason || 'deceased';
+  $('#pn').focus();
+}
+$('#pnew').onclick = () => openForm(null);
+$('#pcancel').onclick = () => $('#pform').hidden = true;
+$('#psave').onclick = async () => {
+  const id = $('#pform').dataset.id, bd = $('#pbd').value;
+  const row = { patient_type: $('#pt').value, full_name: $('#pn').value.trim(), national_id: $('#pi').value.trim(),
+    gender: $('#pg').value, birth_date: bd, residency: $('#pr').value, health_status: $('#ph').value };
+  if (!row.full_name) return msg('أدخل اسم المريض', true);
+  if (!/^\d{9}$/.test(row.national_id)) return msg('رقم الهوية يجب أن يكون 9 أرقام', true);
+  if (!bd || bd < '1900-01-01' || bd > today()) return msg('تاريخ الميلاد غير صحيح', true);
+  let r;
+  if (id) {
+    row.is_active = $('#pa').checked;
+    row.inactive_reason = row.is_active ? null : $('#pre').value;
+    row.inactive_date = row.is_active ? null : today();
+    r = await sb.from('patients').update(row).eq('id', id);
+  } else r = await sb.from('patients').insert(row);
+  if (r.error) return msg(errText(r.error), true);
+  msg('تم حفظ المريض'); await lookups(); loadPatients(); if (id) $('#pform').hidden = true; else openForm(null);
+};
+
+/* ===== جلسات الغسيل (بطاقات للمس) ===== */
+const dstr = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+let gstate = {}, gsaved = new Map(), gfilter = 'all', gadds = new Set(), glast = new Set();
+const GA = { male: 'ذكر', female: 'أنثى' };
+const dayType = () => new Date($('#sd').value + 'T00:00:00').getDay() === 5 ? 'emergency' : 'scheduled';
+const sType = p => gstate[p.id]?.type || dayType();
+const isDup = p => !!gsaved.get(p.id)?.has(sType(p));
+/* قائمة اليوم: المسجلون اليوم + مرضى نفس اليوم من الأسبوع الماضي (مؤقتًا إلى حين اعتماد الجدولة) + المضافون يدويًا */
+const inRoster = p => glast.has(p.id) || gadds.has(p.id) || gsaved.has(p.id);
+const roster = () => pats.filter(inRoster);
+const willSave = p => {
+  const s = gstate[p.id] || {};
+  if (s.absent || gsaved.get(p.id)?.has(sType(p))) return false;
+  return gsaved.has(p.id) ? !!s.extra : true;
+};
+const filtered = () => {
+  const q = $('#gs').value.trim().toLowerCase();
+  return roster().filter(p => pm(p, $('#gs').value) &&
+    (gfilter === 'all' || (gfilter === 'new' && !gsaved.has(p.id)) || (gfilter === 'abs' && gstate[p.id]?.absent) || (gfilter === 'saved' && gsaved.has(p.id))));
+};
+const resetDay = () => { gstate = {}; gadds = new Set(); loadSessions(); };
+const shiftDay = n => { const d = new Date($('#sd').value + 'T00:00:00'); d.setDate(d.getDate() + n); $('#sd').value = dstr(d); resetDay(); };
+$('#dprev').onclick = () => shiftDay(-1); $('#dnext').onclick = () => shiftDay(1);
+$('#dtoday').onclick = () => { $('#sd').value = today(); resetDay(); };
+$('#sd').onchange = resetDay;
+$('#greset').onclick = () => { if (!Object.keys(gstate).length || confirm('مسح الغياب والبيانات غير المحفوظة لهذا اليوم؟')) { gstate = {}; renderGrid(); } };
+$('#gs').oninput = () => renderGrid();
+document.querySelectorAll('#gf [data-f]').forEach(b => b.onclick = () => { gfilter = b.dataset.f; document.querySelectorAll('#gf [data-f]').forEach(x => x.classList.toggle('on', x === b)); renderGrid(); });
+picker($('#gadd'), $('#gaddl'), () => pats.filter(p => !inRoster(p)).map(pitem), it => { gadds.add(it.p.id); renderGrid(); msg('أُضيف ' + it.p.full_name); });
+/* طباعة كشف جلسات اليوم المسجلة */
+let sdata = [];
+$('#gprint').onclick = () => {
+  if (!sdata.length) return msg('لا توجد جلسات مسجلة لطباعتها في هذا التاريخ', true);
+  const d = $('#sd').value, sum = k => sdata.reduce((a, x) => a + (+x[k] || 0), 0);
+  const day = new Date(d + 'T00:00:00').toLocaleDateString('ar-u-nu-latn', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+  $('#prt').innerHTML = `<h2>مركز غسيل الكلية - الزوايدة الميداني</h2><div class="pm">كشف جلسات الغسيل الكلوي — ${esc(day)} (${esc(d)})</div>
+    <table><thead><tr><th>#</th><th>الرمز</th><th>اسم المريض</th><th>رقم الهوية</th><th>الحالة</th><th>نوع الجلسة</th><th>تحاليل</th><th>أشعة</th><th>إحالات</th><th>إحالة إلى</th><th>وحدات داخلية</th><th>وحدات خارجية</th></tr></thead><tbody>` +
+    sdata.map((x, i) => `<tr><td>${i + 1}</td><td>${esc(x.patient_code)}</td><td style="text-align:right">${esc(x.full_name)}</td><td>${esc(x.national_id)}</td><td>${esc(x.health_status)}</td><td>${L[x.session_type]}</td><td>${x.lab_tests_count || ''}</td><td>${x.radiology_count || ''}</td><td>${x.referrals_count || ''}</td><td>${esc(x.referral_to || '')}</td><td>${+x.internal_drug_units || ''}</td><td>${+x.external_drug_units || ''}</td></tr>`).join('') +
+    `<tr class="tot"><td colspan="6">الإجمالي: ${sdata.length} جلسة</td><td>${sum('lab_tests_count')}</td><td>${sum('radiology_count')}</td><td>${sum('referrals_count')}</td><td></td><td>${Math.round(sum('internal_drug_units') * 100) / 100}</td><td>${Math.round(sum('external_drug_units') * 100) / 100}</td></tr></tbody></table>
+    <div class="sg"><span>مدخل البيانات: ${esc(me?.full_name || '')}</span><span>المدير الفني</span><span>مدير المشروع</span></div>`;
+  document.body.classList.add('printing'); window.print();
+};
+window.addEventListener('afterprint', () => document.body.classList.remove('printing'));
+function updBar() {
+  const r = roster(), n = r.filter(willSave).length, a = r.filter(p => gstate[p.id]?.absent).length, k = r.filter(p => gsaved.has(p.id)).length;
+  $('#gsave').textContent = `حفظ الجلسات (${n})`; $('#gsave').disabled = !n;
+  $('#gcnt').textContent = `حاضر ${n} · غائب ${a} · مسجل ${k}`;
+}
+const destName = id => dests.find(x => x.id == id)?.name || '';
+function row(p) {
+  const s = gstate[p.id] || {}, sv = gsaved.get(p.id), extra = sv && s.extra, abs = !!s.absent && !sv;
+  const sum = [+s.int && `داخلية ${s.int}`, +s.ext && `خارجية ${s.ext}`, +s.lab && `تحاليل ${s.lab}`, +s.rad && `أشعة ${s.rad}`,
+    s.ref === 'yes' && ('إحالة' + (s.dst ? ' ← ' + destName(s.dst) : '')), sType(p) === 'emergency' && !sv && 'إسعافية'].filter(Boolean).join(' · ');
+  const other = sv && !sv.has('emergency') ? 'emergency' : sv && !sv.has('scheduled') ? 'scheduled' : '';
+  return `<div class="rw${abs ? ' abs' : ''}${sv ? ' done' : ''}" data-p="${p.id}">
+    <button type="button" class="rw-t" data-act="tog" aria-label="${abs ? 'غائب' : 'حاضر'}">${abs ? '✕' : extra ? '＋' : '✓'}</button>
+    <div class="rw-i" data-act="tog"><b>${esc(p.full_name)}</b><small><span class="mono">${esc(p.patient_code)}</span>${p.health_status !== 'Normal' ? `<span class="tag ${p.health_status.toLowerCase()}">${p.health_status}</span>` : ''}${sv ? [...sv].map(t => `<span class="tag ok">${L[t]} ✓</span>`).join('') : ''}${extra ? `<span class="tag">جلسة ${L[sType(p)]} جديدة</span>` : ''}${sum ? `<span>${esc(sum)}</span>` : ''}</small></div>
+    ${!sv || extra ? `<button type="button" class="ghost rw-e" data-act="edit">إدخال</button>` : other ? `<button type="button" class="ghost rw-e" data-act="extra" data-t="${other}">＋ ${L[other]}</button>` : ''}
+  </div>`;
+}
+function renderGrid() {
+  const list = filtered();
+  $('#gtb').innerHTML = list.length ? list.map(row).join('') : `<div class="empty">${roster().length ? 'لا يوجد مرضى مطابقون.' : 'لا توجد قائمة لهذا اليوم بعد. أضف المرضى من خانة «إضافة مريض» أعلاه.'}</div>`;
+  updBar();
+}
+$('#gtb').addEventListener('click', e => {
+  const el = e.target.closest('[data-act]'), rw = e.target.closest('.rw'); if (!el || !rw) return;
+  const p = pats.find(x => x.id == rw.dataset.p), s = gstate[p.id] ||= {}, sv = gsaved.has(p.id);
+  if (el.dataset.act === 'tog') {
+    if (sv) { if (!s.extra) return; s.extra = false; delete s.type; } else s.absent = !s.absent;
+    rw.outerHTML = row(p); updBar();
+  } else if (el.dataset.act === 'edit') edOpen(p.id);
+  else if (el.dataset.act === 'extra') { s.type = el.dataset.t; s.extra = true; s.absent = false; edOpen(p.id); }
+});
+
+/* ===== محرر الأرقام المتتابع ===== */
+let ged = { ids: [], i: 0 };
+const EMAP = { edi: 'int', edx2: 'ext', edl: 'lab', edr: 'rad', edd: 'dst', edn2: 'refn' };
+const edP = () => pats.find(x => x.id == ged.ids[ged.i]);
+function edOpen(id) {
+  const s = gstate[id] ||= {}; s.absent = false;
+  ged.ids = filtered().filter(p => { const t = gstate[p.id] || {}; return !t.absent && (!gsaved.has(p.id) || t.extra); }).map(p => p.id);
+  if (!ged.ids.includes(id)) ged.ids.push(id);
+  ged.i = ged.ids.indexOf(id); edLoad();
+  if (!$('#ed').open) $('#ed').showModal();
+  $('#edi').focus();
+}
+function edLoad() {
+  const p = edP(), s = gstate[p.id] ||= {}, sv = gsaved.get(p.id), t = sType(p);
+  $('#edn').textContent = p.full_name; $('#edc').textContent = `${ged.i + 1} / ${ged.ids.length}`;
+  document.querySelectorAll('#edt button').forEach(b => { b.classList.toggle('on', b.dataset.v === t); b.disabled = !!sv?.has(b.dataset.v); });
+  $('#edi').value = s.int ?? ''; $('#edx2').value = s.ext ?? ''; $('#edl').value = s.lab ?? ''; $('#edr').value = s.rad ?? '';
+  $('#edd').innerHTML = destOpts; $('#edd').value = s.dst || ''; $('#edn2').value = s.refn ?? '';
+  edRef(s.ref === 'yes');
+  $('#edp').disabled = ged.i === 0; $('#ednx').textContent = ged.i < ged.ids.length - 1 ? 'التالي' : 'تم';
+}
+function edRef(yes) {
+  document.querySelectorAll('#edf button').forEach(b => b.classList.toggle('on', (b.dataset.v === 'yes') === yes));
+  $('#edrf').hidden = !yes;
+}
+function edGo(dir) {
+  const s = gstate[ged.ids[ged.i]] || {};
+  if (dir > 0 && s.ref === 'yes' && !s.dst) { msg('اختر جهة الإحالة', true); return $('#edd').focus(); }
+  const j = ged.i + dir; if (j < 0) return;
+  if (j >= ged.ids.length) return $('#ed').close();
+  ged.i = j; edLoad(); $('#edi').focus();
+}
+$('#ed').addEventListener('input', e => {
+  const k = EMAP[e.target.id]; if (!k) return;
+  (gstate[ged.ids[ged.i]] ||= {})[k] = e.target.value;
+});
+$('#edt').onclick = e => {
+  const b = e.target.closest('button'); if (!b || b.disabled) return;
+  const p = edP(), s = gstate[p.id] ||= {}; s.type = b.dataset.v; if (gsaved.has(p.id)) s.extra = true;
+  document.querySelectorAll('#edt button').forEach(x => x.classList.toggle('on', x === b));
+};
+$('#edf').onclick = e => {
+  const b = e.target.closest('button'); if (!b) return;
+  const s = gstate[ged.ids[ged.i]] ||= {}, yes = b.dataset.v === 'yes';
+  s.ref = yes ? 'yes' : ''; if (yes && !s.refn) { s.refn = '1'; $('#edn2').value = '1'; }
+  edRef(yes); if (yes) $('#edd').focus();
+};
+$('#ed').addEventListener('keydown', e => {
+  if (e.key !== 'Enter' || e.target.tagName !== 'INPUT') return; e.preventDefault();
+  const f = ['edi', 'edx2', 'edl', 'edr', ...($('#edrf').hidden ? [] : ['edd', 'edn2'])], i = f.indexOf(e.target.id);
+  if (i < f.length - 1) $('#' + f[i + 1]).focus(); else edGo(1);
+});
+$('#ednx').onclick = () => edGo(1); $('#edp').onclick = () => edGo(-1); $('#edx').onclick = () => $('#ed').close();
+$('#ed').addEventListener('close', renderGrid);
+
+$('#gsave').onclick = async () => {
+  const d = $('#sd').value, nn = v => Math.max(0, Number(v) || 0), ni = v => Math.max(0, parseInt(v) || 0);
+  const bad = roster().find(p => willSave(p) && gstate[p.id]?.ref === 'yes' && !gstate[p.id].dst);
+  if (bad) return msg('اختر جهة الإحالة للمريض: ' + bad.full_name, true);
+  const rows = roster().filter(willSave).map(p => {
+    const s = gstate[p.id] || {}, rf = s.ref === 'yes';
+    return { patient_id: p.id, session_date: d, session_type: sType(p), lab_tests_count: ni(s.lab), radiology_count: ni(s.rad),
+      referrals_count: rf ? Math.max(1, ni(s.refn)) : 0, referral_destination_id: rf ? (s.dst || null) : null,
+      external_drug_units: nn(s.ext), internal_drug_units: nn(s.int) };
+  });
+  if (!rows.length) return msg('لا توجد جلسات جديدة للحفظ', true);
+  const abs = roster().filter(p => gstate[p.id]?.absent && !gsaved.has(p.id)).length;
+  $('#gsave').disabled = true;
+  const { error } = await sb.from('dialysis_sessions').insert(rows);
+  if (error) { updBar(); if (error.code === '23505') loadSessions(); return msg(error.code === '23505' ? 'بعض الجلسات مسجلة مسبقًا. تم تحديث القائمة، راجعها ثم احفظ' : errText(error), true); }
+  msg('تم حفظ ' + rows.length + ' جلسة' + (abs ? ` (${abs} غائب لم يُسجَّل)` : '')); gstate = {}; loadSessions();
+};
+async function loadSessions() {
+  const d = $('#sd').value; if (!d) return;
+  $('#fri').hidden = new Date(d + 'T00:00:00').getDay() !== 5;
+  const { data, error } = await sb.from('v_session_summary').select('*').eq('session_date', d).order('session_type').order('patient_code');
+  if (error) return msg(errText(error), true);
+  sdata = data;
+  gsaved = new Map(); data.forEach(s => { if (!gsaved.has(s.patient_id)) gsaved.set(s.patient_id, new Set()); gsaved.get(s.patient_id).add(s.session_type); });
+  const lw = new Date(d + 'T00:00:00'); lw.setDate(lw.getDate() - 7);
+  const lr = await sb.from('v_session_summary').select('patient_id').eq('session_date', dstr(lw)).eq('session_type', 'scheduled');
+  glast = new Set((lr.data || []).map(x => x.patient_id));
+  renderGrid();
+  const sum = k => data.reduce((a, x) => a + (+x[k] || 0), 0);
+  $('#ssum').innerHTML = `<div><b>${data.length}</b>جلسة</div><div><b>${sum('internal_prescriptions')}</b>وصفة داخلية</div><div><b>${sum('external_prescriptions')}</b>وصفة خارجية</div><div><b>${sum('lab_tests_count') + sum('radiology_count')}</b>طلبات مخبرية وشعاعية</div>`;
+  $('#stb').innerHTML = data.length ? '<tr><th>المريض</th><th>النوع</th><th>الحالة</th><th>وصفة داخلية</th><th>وصفة خارجية</th><th>وحدات داخلية</th><th>وحدات خارجية</th><th>تحاليل</th><th>أشعة</th><th>إحالات</th>' + (isMgr() ? '<th></th>' : '') + '</tr>' +
+    data.map(x => `<tr><td>${esc(x.patient_code)} — ${esc(x.full_name)}</td><td>${L[x.session_type]}</td><td><span class="tag ${x.health_status.toLowerCase()}">${x.health_status}</span></td>
+      <td>${x.internal_prescriptions}</td><td>${x.external_prescriptions}</td><td>${x.internal_drug_units}</td><td>${x.external_drug_units}</td><td>${x.lab_tests_count}</td><td>${x.radiology_count}</td><td>${x.referrals_count}</td>
+      ${isMgr() ? `<td><button class="danger" data-d="${x.session_id}">حذف</button></td>` : ''}</tr>`).join('')
+    : '<tr><td class="empty">لا توجد جلسات مسجلة في هذا التاريخ بعد.</td></tr>';
+  document.querySelectorAll('[data-d]').forEach(b => b.onclick = async () => {
+    if (!confirm('حذف هذه الجلسة؟ يبقى أثرها في سجل التدقيق.')) return;
+    const r = await sb.from('dialysis_sessions').update({ deleted_at: new Date().toISOString() }).eq('id', b.dataset.d);
+    r.error ? msg(errText(r.error), true) : (msg('تم حذف الجلسة'), loadSessions());
+  });
+}
+
+/* ===== العيادة الخارجية (نفس آلية الغسيل) ===== */
+let vstate = {}, vsaved = new Map(), vfilter = 'all', vadds = new Set(), vlast = new Set();
+const vroster = () => opats.filter(p => vlast.has(p.id) || vadds.has(p.id) || vsaved.has(p.id));
+const vwill = p => !vstate[p.id]?.absent && !vsaved.has(p.id);
+const vfiltered = () => vroster().filter(p => pm(p, $('#vs').value) &&
+  (vfilter === 'all' || (vfilter === 'new' && !vsaved.has(p.id)) || (vfilter === 'abs' && vstate[p.id]?.absent) || (vfilter === 'saved' && vsaved.has(p.id))));
+const vreset = () => { vstate = {}; vadds = new Set(); loadVisits(); };
+$('#vd').value = today(); $('#vd').onchange = vreset;
+const vshift = n => { const d = new Date($('#vd').value + 'T00:00:00'); d.setDate(d.getDate() + n); $('#vd').value = dstr(d); vreset(); };
+$('#vprev').onclick = () => vshift(-1); $('#vnext').onclick = () => vshift(1);
+$('#vtoday').onclick = () => { $('#vd').value = today(); vreset(); };
+$('#vs').oninput = () => vrender();
+document.querySelectorAll('#vflt [data-f]').forEach(b => b.onclick = () => { vfilter = b.dataset.f; document.querySelectorAll('#vflt [data-f]').forEach(x => x.classList.toggle('on', x === b)); vrender(); });
+picker($('#vadd'), $('#vaddl'), () => opats.filter(p => !(vlast.has(p.id) || vadds.has(p.id) || vsaved.has(p.id))).map(pitem), it => { vadds.add(it.p.id); vrender(); msg('أُضيف ' + it.p.full_name); });
+
+function vbar() {
+  const r = vroster(), n = r.filter(vwill).length, a = r.filter(p => vstate[p.id]?.absent && !vsaved.has(p.id)).length, k = r.filter(p => vsaved.has(p.id)).length;
+  $('#vsave').textContent = `حفظ الزيارات (${n})`; $('#vsave').disabled = !n;
+  $('#vcnt').textContent = `حاضر ${n} · غائب ${a} · مسجل ${k}`;
+}
+function vrow(p) {
+  const s = vstate[p.id] || {}, sv = vsaved.get(p.id), abs = !!s.absent && !sv;
+  const sum = [(s.dx || []).map(x => x.name).join('، '), +s.lab && `تحاليل ${s.lab}`, +s.rad && `أشعة ${s.rad}`, +s.ext && `وحدات ${s.ext}`,
+    s.ref === 'yes' && ('إحالة' + (s.dst ? ' ← ' + destName(s.dst) : ''))].filter(Boolean).join(' · ');
+  return `<div class="rw${abs ? ' abs' : ''}${sv ? ' done' : ''}" data-p="${p.id}">
+    <button type="button" class="rw-t" data-act="tog" aria-label="${abs ? 'غائب' : 'حاضر'}">${abs ? '✕' : '✓'}</button>
+    <div class="rw-i" data-act="tog"><b>${esc(p.full_name)}</b><small><span class="mono">${esc(p.patient_code)}</span>${p.patient_type === 'dialysis' ? '<span class="tag">غسيل</span>' : ''}${p.health_status !== 'Normal' ? `<span class="tag ${p.health_status.toLowerCase()}">${p.health_status}</span>` : ''}${sv ? '<span class="tag ok">زيارة مسجلة ✓</span>' : ''}${sum ? `<span>${esc(sum)}</span>` : ''}</small></div>
+    ${sv ? '' : '<button type="button" class="ghost rw-e" data-act="edit">إدخال</button>'}
+  </div>`;
+}
+function vrender() {
+  const list = vfiltered();
+  $('#vlist').innerHTML = list.length ? list.map(vrow).join('') : `<div class="empty">${vroster().length ? 'لا يوجد مرضى مطابقون.' : 'لا توجد قائمة لهذا اليوم بعد. أضف مريضًا من خانة «إضافة مريض»، أو أنشئ «مريضًا جديدًا» عند أول زيارة.'}</div>`;
+  vbar();
+}
+$('#vlist').addEventListener('click', e => {
+  const el = e.target.closest('[data-act]'), rw = e.target.closest('.rw'); if (!el || !rw) return;
+  const p = opats.find(x => x.id == rw.dataset.p), s = vstate[p.id] ||= {};
+  if (el.dataset.act === 'tog') { if (vsaved.has(p.id)) return; s.absent = !s.absent; rw.outerHTML = vrow(p); vbar(); }
+  else vOpen(p.id);
+});
+
+/* محرر الزيارة المتتابع */
+let ved = { ids: [], i: 0 };
+const VMAP = { vedl: 'lab', vedr: 'rad', vedu: 'ext', vedd: 'dst', vedn2: 'refn', vedrs: 'rrs' };
+const vP = () => opats.find(x => x.id == ved.ids[ved.i]);
+function vOpen(id) {
+  (vstate[id] ||= {}).absent = false;
+  ved.ids = vfiltered().filter(vwill).map(p => p.id);
+  if (!ved.ids.includes(id)) ved.ids.push(id);
+  ved.i = ved.ids.indexOf(id); vLoad();
+  if (!$('#ved').open) $('#ved').showModal();
+  $('#vdxi').focus();
+}
+function vChips() {
+  const s = vstate[vP().id] ||= {};
+  $('#vdxc').innerHTML = (s.dx || []).map((x, i) => `<span class="chip">${esc(x.name)}<button type="button" data-rm="${i}" aria-label="إزالة">✕</button></span>`).join('');
+}
+function vRef(yes) {
+  document.querySelectorAll('#vedf button').forEach(b => b.classList.toggle('on', (b.dataset.v === 'yes') === yes));
+  $('#vedrf').hidden = !yes;
+}
+function vLoad() {
+  const p = vP(), s = vstate[p.id] ||= {};
+  $('#vedn').textContent = p.full_name; $('#vedc').textContent = `${ved.i + 1} / ${ved.ids.length}`;
+  $('#vedl').value = s.lab ?? ''; $('#vedr').value = s.rad ?? ''; $('#vedu').value = s.ext ?? '';
+  $('#vedd').innerHTML = destOpts; $('#vedd').value = s.dst || ''; $('#vedn2').value = s.refn ?? ''; $('#vedrs').value = s.rrs ?? '';
+  vRef(s.ref === 'yes'); vChips(); $('#vedcv').hidden = p.patient_type !== 'outpatient';
+  $('#vedp').disabled = ved.i === 0; $('#vednx').textContent = ved.i < ved.ids.length - 1 ? 'التالي' : 'تم';
+}
+function vGo(dir) {
+  const s = vstate[ved.ids[ved.i]] || {};
+  if (dir > 0 && s.ref === 'yes' && !s.dst) { msg('اختر جهة الإحالة', true); return $('#vedd').focus(); }
+  const j = ved.i + dir; if (j < 0) return;
+  if (j >= ved.ids.length) return $('#ved').close();
+  ved.i = j; vLoad(); $('#vdxi').focus();
+}
+picker($('#vdxi'), $('#vdxl'), () => { const cur = vstate[ved.ids[ved.i]]?.dx || []; return dxs.filter(d => !cur.some(x => x.id === d.id)).map(d => ({ id: d.id, label: d.name, hay: norm(d.name) })); },
+  it => { const s = vstate[ved.ids[ved.i]] ||= {}; (s.dx ||= []).push({ id: it.id, name: it.label }); vChips(); $('#vdxi').focus(); }, 12);
+$('#vdxc').addEventListener('click', e => {
+  const b = e.target.closest('[data-rm]'); if (!b) return;
+  (vstate[ved.ids[ved.i]].dx).splice(+b.dataset.rm, 1); vChips();
+});
+$('#ved').addEventListener('input', e => { const k = VMAP[e.target.id]; if (k) (vstate[ved.ids[ved.i]] ||= {})[k] = e.target.value; });
+$('#vedf').onclick = e => {
+  const b = e.target.closest('button'); if (!b) return;
+  const s = vstate[ved.ids[ved.i]] ||= {}, yes = b.dataset.v === 'yes';
+  s.ref = yes ? 'yes' : ''; if (yes && !s.refn) { s.refn = '1'; $('#vedn2').value = '1'; }
+  vRef(yes); if (yes) $('#vedd').focus();
+};
+$('#ved').addEventListener('keydown', e => {
+  if (e.key !== 'Enter' || e.target.tagName !== 'INPUT' || e.target.id === 'vdxi') return; e.preventDefault();
+  const f = ['vedl', 'vedr', 'vedu', ...($('#vedrf').hidden ? [] : ['vedd', 'vedn2', 'vedrs'])], i = f.indexOf(e.target.id);
+  if (i < f.length - 1) $('#' + f[i + 1]).focus(); else vGo(1);
+});
+$('#vednx').onclick = () => vGo(1); $('#vedp').onclick = () => vGo(-1); $('#vedx').onclick = () => $('#ved').close();
+$('#ved').addEventListener('close', vrender);
+
+/* مريض جديد عند أول زيارة */
+$('#vnew').onclick = () => { ['#npn', '#npi', '#npb'].forEach(i => $(i).value = ''); $('#npg').value = 'male'; $('#npr').value = 'resident'; $('#nph').value = 'Normal'; $('#np').showModal(); $('#npn').focus(); };
+$('#npx').onclick = $('#npc').onclick = () => $('#np').close();
+$('#nps').onclick = async () => {
+  const bd = $('#npb').value, row = { patient_type: 'outpatient', full_name: $('#npn').value.trim(), national_id: $('#npi').value.trim(),
+    gender: $('#npg').value, birth_date: bd, residency: $('#npr').value, health_status: $('#nph').value };
+  if (!row.full_name) return msg('أدخل اسم المريض', true);
+  if (!/^\d{9}$/.test(row.national_id)) return msg('رقم الهوية يجب أن يكون 9 أرقام', true);
+  if (!bd || bd < '1900-01-01' || bd > today()) return msg('تاريخ الميلاد غير صحيح', true);
+  $('#nps').disabled = true;
+  const { data, error } = await sb.from('patients').insert(row).select('id').single();
+  $('#nps').disabled = false;
+  if (error) return msg(error.code === '23505' ? 'رقم الهوية مسجل مسبقًا: ابحث عن المريض وأضفه من خانة الإضافة' : errText(error), true);
+  await lookups(); vadds.add(data.id); $('#np').close(); vrender(); msg('تم إنشاء المريض'); vOpen(data.id);
+};
+
+async function loadVisits() {
+  const d = $('#vd').value; if (!d) return;
+  const { data, error } = await sb.from('v_visit_summary').select('*').eq('visit_date', d).order('patient_code');
+  if (error) return msg(errText(error), true);
+  vsaved = new Map(data.map(v => [v.patient_id, v]));
+  const lw = new Date(d + 'T00:00:00'); lw.setDate(lw.getDate() - 7);
+  const lr = await sb.from('v_visit_summary').select('patient_id').eq('visit_date', dstr(lw));
+  vlast = new Set((lr.data || []).map(x => x.patient_id));
+  vrender();
+  const sum = k => data.reduce((a, x) => a + (+x[k] || 0), 0);
+  $('#vsum').innerHTML = `<div><b>${data.length}</b>زيارة</div><div><b>${sum('lab_tests_count') + sum('radiology_count')}</b>تحاليل وأشعة</div><div><b>${sum('referrals_count')}</b>إحالة</div><div><b>${sum('external_drug_units')}</b>وحدة دوائية</div>`;
+  $('#vtb').innerHTML = data.length ? '<tr><th>المريض</th><th>التشخيص</th><th>الحالة</th><th>وصفة خارجية</th><th>وحدات دوائية</th><th>تحاليل</th><th>أشعة</th><th>إحالات</th>' + (isMgr() ? '<th></th>' : '') + '</tr>' +
+    data.map(v => `<tr><td>${esc(v.patient_code)} — ${esc(v.full_name)}</td><td style="white-space:normal;min-width:160px">${esc(v.diagnoses || '—')}</td><td><span class="tag ${v.health_status.toLowerCase()}">${v.health_status}</span></td><td>${v.external_prescriptions}</td><td>${v.external_drug_units}</td><td>${v.lab_tests_count}</td><td>${v.radiology_count}</td><td>${v.referrals_count}</td>
+      ${isMgr() ? `<td><button class="danger" data-vd="${v.visit_id}">حذف</button></td>` : ''}</tr>`).join('')
+    : '<tr><td class="empty">لا توجد زيارات مسجلة في هذا التاريخ بعد.</td></tr>';
+  document.querySelectorAll('[data-vd]').forEach(b => b.onclick = async () => {
+    if (!confirm('حذف هذه الزيارة؟ يبقى أثرها في سجل التدقيق.')) return;
+    const r = await sb.from('clinic_visits').update({ deleted_at: new Date().toISOString() }).eq('id', b.dataset.vd);
+    r.error ? msg(errText(r.error), true) : (msg('تم حذف الزيارة'), loadVisits());
+  });
+}
+$('#vsave').onclick = async () => {
+  const d = $('#vd').value; if (!d) return msg('حدد تاريخ الزيارة', true);
+  const nn = v => Math.max(0, Number(v) || 0), ni = v => Math.max(0, parseInt(v) || 0), list = vroster().filter(vwill);
+  const bad = list.find(p => vstate[p.id]?.ref === 'yes' && !vstate[p.id].dst);
+  if (bad) return msg('اختر جهة الإحالة للمريض: ' + bad.full_name, true);
+  const nodx = list.filter(p => !(vstate[p.id]?.dx || []).length).length;
+  if (nodx && !confirm(`${nodx} زيارة بلا تشخيص. هل تريد المتابعة والحفظ؟`)) return;
+  const rows = list.map(p => {
+    const s = vstate[p.id] || {}, rf = s.ref === 'yes';
+    return { patient_id: p.id, visit_date: d, lab_tests_count: ni(s.lab), radiology_count: ni(s.rad), referrals_count: rf ? Math.max(1, ni(s.refn)) : 0,
+      referral_destination_id: rf ? (s.dst || null) : null, referral_reason: rf ? ((s.rrs || '').trim() || null) : null, external_drug_units: nn(s.ext) };
+  });
+  if (!rows.length) return msg('لا توجد زيارات جديدة للحفظ', true);
+  $('#vsave').disabled = true;
+  const { data, error } = await sb.from('clinic_visits').insert(rows).select('id,patient_id');
+  if (error) { vbar(); if (error.code === '23505') loadVisits(); return msg(error.code === '23505' ? 'بعض الزيارات مسجلة مسبقًا. تم تحديث القائمة، راجعها ثم احفظ' : errText(error), true); }
+  const dx = []; data.forEach(v => (vstate[v.patient_id]?.dx || []).forEach(x => dx.push({ visit_id: v.id, diagnosis_id: x.id })));
+  const dxErr = dx.length && (await sb.from('visit_diagnoses').insert(dx)).error;
+  dxErr ? msg('حُفظت الزيارات لكن تعذّر حفظ التشخيصات. أبلغ المدير.', true) : msg('تم حفظ ' + rows.length + ' زيارة');
+  vstate = {}; loadVisits();
+};
+
+/* ===== تحويل مريض من عيادة خارجية إلى غسيل (قرار الطبيب) ===== */
+let cvId = null;
+function cvOpen(id) {
+  const p = opats.find(x => x.id == id) || plist.find(x => x.id == id); if (!p) return;
+  cvId = p.id; $('#cvn').textContent = p.full_name + ' — ' + p.patient_code;
+  $('#cvd').value = today(); $('#cvr').value = ''; $('#cv').showModal(); $('#cvr').focus();
+}
+$('#vedcv').onclick = () => cvOpen(ved.ids[ved.i]);
+$('#cvx').onclick = $('#cvc').onclick = () => $('#cv').close();
+$('#cvs').onclick = async () => {
+  const note = $('#cvr').value.trim(), d = $('#cvd').value;
+  if (!d || d > today()) return msg('تاريخ القرار غير صحيح', true);
+  if (!note) return msg('اكتب اسم الطبيب أو سبب القرار', true);
+  $('#cvs').disabled = true;
+  const { error } = await sb.rpc('convert_to_dialysis', { p_patient: cvId, p_date: d, p_note: note });
+  $('#cvs').disabled = false;
+  if (error) return msg(errText(error), true);
+  $('#cv').close(); msg('تم تحويل المريض إلى مريض غسيل');
+  await lookups();
+  if (!$('#t-patients').hidden) loadPatients();
+  if ($('#ved').open) vLoad();
+  if (!$('#t-visits').hidden) vrender();
+};
+
+/* ===== المستخدمون والصلاحيات (للمدير) ===== */
+const RL = { manager: 'مدير النظام', data_entry: 'مدخل بيانات' };
+let ulist = [];
+async function fnCall(body) {
+  const { data, error } = await sb.functions.invoke('admin-users', { body });
+  if (error) { let m = error.message; try { m = (await error.context.json()).error || m; } catch (e) {} throw new Error(m); }
+  if (data?.error) throw new Error(data.error);
+  return data;
+}
+async function loadUsers() {
+  const { data, error } = await sb.from('app_users').select('id,username,full_name,role,is_active,created_at').order('created_at');
+  if (error) return msg(errText(error), true);
+  ulist = data; renderUsers();
+}
+function renderUsers() {
+  $('#utb').innerHTML = '<tr><th>الاسم</th><th>اسم المستخدم</th><th>الصلاحية</th><th>الحالة</th><th>أُنشئ</th><th></th></tr>' + ulist.map(u => {
+    const self = u.id === me.id;
+    return `<tr data-u="${u.id}"><td class="nm">${esc(u.full_name)}${self ? ' <span class="tag">أنت</span>' : ''}</td><td class="mono">${esc(u.username || '—')}</td>
+      <td>${self ? RL[u.role] : `<select data-uk="role" aria-label="الصلاحية"><option value="data_entry" ${u.role === 'data_entry' ? 'selected' : ''}>مدخل بيانات</option><option value="manager" ${u.role === 'manager' ? 'selected' : ''}>مدير النظام</option></select>`}</td>
+      <td>${u.is_active ? '<span class="tag ok">فعّال</span>' : '<span class="tag off">موقوف</span>'}</td>
+      <td class="mono">${esc(String(u.created_at).slice(0, 10))}</td>
+      <td>${self ? '' : `<button class="ghost" data-ua="act">${u.is_active ? 'إيقاف' : 'تفعيل'}</button> <button class="ghost" data-ua="pw">كلمة مرور جديدة</button>`}</td></tr>`;
+  }).join('');
+}
+$('#utb').addEventListener('change', async e => {
+  const tr = e.target.closest('tr[data-u]'); if (!tr || e.target.dataset.uk !== 'role') return;
+  const u = ulist.find(x => x.id === tr.dataset.u);
+  if (!confirm(`تغيير صلاحية «${u.full_name}» إلى ${RL[e.target.value]}؟`)) { e.target.value = u.role; return; }
+  const { data, error } = await sb.from('app_users').update({ role: e.target.value }).eq('id', u.id).select('id');
+  if (error || !data?.length) { e.target.value = u.role; return msg(error ? errText(error) : 'لم يتم التعديل', true); }
+  u.role = e.target.value; msg('تم تغيير الصلاحية');
+});
+$('#utb').addEventListener('click', async e => {
+  const b = e.target.closest('[data-ua]'), tr = e.target.closest('tr[data-u]'); if (!b || !tr) return;
+  const u = ulist.find(x => x.id === tr.dataset.u);
+  if (b.dataset.ua === 'act') {
+    const to = !u.is_active;
+    if (!confirm(to ? `تفعيل حساب «${u.full_name}»؟` : `إيقاف حساب «${u.full_name}»؟ لن يتمكن من الدخول أو قراءة أي بيانات، وتبقى سجلاته كما هي.`)) return;
+    const { data, error } = await sb.from('app_users').update({ is_active: to }).eq('id', u.id).select('id');
+    if (error || !data?.length) return msg(error ? errText(error) : 'لم يتم التعديل', true);
+    msg(to ? 'تم تفعيل الحساب' : 'تم إيقاف الحساب'); loadUsers();
+  } else {
+    const pw = genPw();
+    if (!confirm(`تعيين كلمة مرور جديدة لـ «${u.full_name}»؟ ستظهر لك مرة واحدة فقط.`)) return;
+    b.disabled = true;
+    try { await fnCall({ action: 'reset_password', id: u.id, password: pw }); showCred(u.username, pw, 'كلمة المرور الجديدة'); }
+    catch (er) { msg(er.message, true); }
+    b.disabled = false;
+  }
+});
+const genPw = () => { const c = 'abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789', a = new Uint32Array(10); crypto.getRandomValues(a); return [...a].map(x => c[x % c.length]).join(''); };
+function showCred(user, pw, title) {
+  const b = $('#ures'); b.hidden = false; b.style.whiteSpace = 'pre-line';
+  b.textContent = `${title}\nاسم المستخدم: ${user}\nكلمة المرور: ${pw}\nاحفظها الآن وسلّمها للمستخدم، فلن تظهر مرة أخرى.`;
+  b.scrollIntoView({ block: 'center' });
+}
+$('#ugen').onclick = () => { $('#up').value = genPw(); };
+$('#uadd').onclick = async () => {
+  const username = $('#uu').value.trim().toLowerCase(), full_name = $('#un').value.trim(), role = $('#ur').value, password = $('#up').value;
+  if (!full_name) return msg('أدخل الاسم الكامل', true);
+  if (!/^[a-z0-9._-]{3,30}$/.test(username)) return msg('اسم المستخدم: 3 إلى 30 حرفًا إنجليزيًا صغيرًا أو أرقام أو . _ -', true);
+  if (password.length < 8) return msg('كلمة المرور 8 أحرف على الأقل', true);
+  if (role === 'manager' && !confirm('سيحصل هذا الحساب على صلاحيات المدير الكاملة. متابعة؟')) return;
+  $('#uadd').disabled = true;
+  try {
+    await fnCall({ action: 'create', username, full_name, role, password });
+    showCred(username, password, 'تم إنشاء الحساب');
+    ['#un', '#uu', '#up'].forEach(i => $(i).value = ''); loadUsers();
+  } catch (er) { msg(er.message, true); }
+  $('#uadd').disabled = false;
+};
+$('#uperm').innerHTML = '<tr><th>الإجراء</th><th>مدخل بيانات</th><th>مدير النظام</th></tr>' + [
+  ['عرض المرضى والجلسات والزيارات', 1, 1], ['إضافة مرضى وجلسات وزيارات', 1, 1], ['إكمال الحقول الفارغة في بيانات مريض', 1, 1],
+  ['تحويل مريض من عيادة إلى غسيل (مع تسجيل القرار)', 1, 1], ['تعديل بيانات مريض موجودة', 0, 1], ['حذف جلسة أو زيارة (حذف منطقي)', 0, 1],
+  ['إدارة الثوابت (أدوية، تشخيصات، جهات)', 0, 1], ['استيراد المرضى من Excel', 0, 1], ['التقارير', 0, 1], ['المستخدمون والصلاحيات', 0, 1]
+].map(r => `<tr><td style="white-space:normal">${r[0]}</td><td>${r[1] ? '<span class="tag ok">✓</span>' : '<span class="tag off">—</span>'}</td><td>${r[2] ? '<span class="tag ok">✓</span>' : '<span class="tag off">—</span>'}</td></tr>`).join('');
+
+/* ===== الثوابت (للمدير) ===== */
+const LK = { drugs: 'الأدوية', lab_tests: 'التحاليل المخبرية', radiology_types: 'أنواع الأشعة', diagnoses: 'التشخيصات', referral_destinations: 'جهات الإحالة' };
+$('#lks').innerHTML = Object.entries(LK).map(([k, v]) => `<option value="${k}">${v}</option>`).join('');
+$('#lks').onchange = loadLookups;
+async function loadLookups() {
+  const t = $('#lks').value, dr = t === 'drugs';
+  $('#lkph').hidden = !dr; $('#lkhint').textContent = dr ? ' بصيغة: الاسم | الوحدة' : '';
+  const { data, error } = await sb.from(t).select('*').order('name');
+  if (error) return msg(errText(error), true);
+  $('#lktb').innerHTML = '<tr><th>الاسم</th>' + (dr ? '<th>الوحدة</th><th>الصيدلية</th>' : '') + '<th>الحالة</th><th></th></tr>' +
+    (data.length ? data.map(x => `<tr><td>${esc(x.name)}</td>${dr ? `<td>${esc(x.unit)}</td><td>${x.pharmacy_type === 'internal' ? 'داخلية' : 'خارجية'}</td>` : ''}<td>${x.is_active ? 'فعّال' : '<span class="tag off">موقوف</span>'}</td><td><button class="ghost" data-a="${x.id}" data-v="${x.is_active}">${x.is_active ? 'إيقاف' : 'تفعيل'}</button></td></tr>`).join('') : '<tr><td class="mut">لا توجد عناصر بعد.</td></tr>');
+  document.querySelectorAll('[data-a]').forEach(b => b.onclick = async () => {
+    const r = await sb.from(t).update({ is_active: b.dataset.v !== 'true' }).eq('id', b.dataset.a);
+    r.error ? msg(errText(r.error), true) : (await lookups(), loadLookups());
+  });
+}
+$('#lkadd').onclick = async () => {
+  const t = $('#lks').value, dr = t === 'drugs';
+  const lines = $('#lkbulk').value.split('\n').map(x => x.trim()).filter(Boolean);
+  if (!lines.length) return msg('اكتب عنصرًا واحدًا على الأقل', true);
+  const rows = lines.map(l => { if (!dr) return { name: l }; const [name, unit] = l.split('|').map(x => x.trim()); return { name, unit, pharmacy_type: $('#lkpt').value }; });
+  if (dr && rows.some(r => !r.name || !r.unit)) return msg('كل دواء يحتاج: الاسم | الوحدة', true);
+  const { error } = await sb.from(t).insert(rows);
+  if (error) return msg(error.code === '23505' ? 'يوجد عنصر مكرر ضمن المدخلات أو موجود مسبقًا' : errText(error), true);
+  $('#lkbulk').value = ''; msg('تمت إضافة ' + rows.length + ' عنصر'); await lookups(); loadLookups();
+};
+
+/* ===== استيراد المرضى (للمدير) ===== */
+let impRows = [];
+const nrm = v => String(v ?? '').trim().replace(/[أإآ]/g, 'ا');
+const cv = c => { const v = c.value; if (v && typeof v === 'object' && !(v instanceof Date)) return v.result ?? v.text ?? (v.richText ? v.richText.map(r => r.text).join('') : ''); return v; };
+function bdate(v) {
+  if (v instanceof Date) return v.toISOString().slice(0, 10);
+  if (typeof v === 'number') { if (v >= 1900 && v <= 2100) return v + '-01-01'; if (v > 10000 && v < 80000) return new Date(Math.round((v - 25569) * 864e5)).toISOString().slice(0, 10); }
+  const t = String(v ?? '').trim(), m = t.match(/^(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{4})$/);
+  if (/^\d{4}-\d{2}-\d{2}/.test(t)) return t.slice(0, 10);
+  if (m) return `${m[3]}-${m[2].padStart(2, '0')}-${m[1].padStart(2, '0')}`;
+  return /^\d{4}$/.test(t) ? t + '-01-01' : null;
+}
+$('#imcheck').onclick = async () => {
+  const f = $('#imf').files[0]; if (!f) return msg('اختر ملف Excel أولًا', true);
+  $('#imres').textContent = 'جارٍ قراءة الملف...'; $('#imgo').hidden = true; impRows = [];
+  let ws;
+  try { const wb = new ExcelJS.Workbook(); await wb.xlsx.load(await f.arrayBuffer()); ws = wb.getWorksheet('Patients') || wb.worksheets[0]; }
+  catch (e) { $('#imres').textContent = ''; return msg('تعذّر قراءة الملف، تأكد أنه بصيغة xlsx', true); }
+  const h = {}; ws.getRow(1).eachCell((c, i) => h[nrm(cv(c))] = i);
+  const miss = ['اسم المريض', 'رقم الهوية', 'نوع المريض', 'الجنس', 'سنة الميلاد', 'حالة الاقامة'].filter(k => !h[k]);
+  if (miss.length) { $('#imres').textContent = ''; return msg('أعمدة ناقصة في الملف: ' + miss.join('، '), true); }
+  const T = { 'غسيل': 'dialysis', 'عيادة': 'outpatient' }, G = { 'ذكر': 'male', 'انثى': 'female' }, R = { 'مقيم': 'resident', 'لاجئ': 'refugee' };
+  const dmap = $('#imd').value, seen = new Set(), bad = [], ok = [];
+  const nf = r => { const v = ws.getCell(r, h['اسم المريض']).value; return v && typeof v === 'object' && v.formula !== undefined && (v.result === undefined || v.result === null); };
+  for (let n = 2; n <= ws.rowCount; n++) {
+    const g = k => h[k] ? cv(ws.getCell(n, h[k])) : null;
+    const name = String(g('اسم المريض') ?? '').replace(/\s+/g, ' ').trim(), id = String(g('رقم الهوية') ?? '').replace(/\D/g, '');
+    if (!name && !id) continue;
+    const why = [], type = T[nrm(g('نوع المريض'))], gender = G[nrm(g('الجنس'))], rv = nrm(g('حالة الاقامة'));
+    let res = R[rv];
+    if (!name) why.push(nf(n) ? 'الاسم صيغة بلا قيمة محفوظة: افتح الملف في Excel واحفظه ثم أعد الرفع' : 'الاسم فارغ');
+    if (id.length !== 9) why.push('رقم الهوية ليس 9 أرقام'); else if (seen.has(id)) why.push('رقم الهوية مكرر داخل الملف');
+    if (!type) why.push('نوع المريض غير معروف');
+    if (!gender) why.push('الجنس غير معروف');
+    if (!res && rv === 'نازح') { res = dmap; if (!res) why.push('الإقامة «نازح» غير معتمدة: صحّحها في الملف أو اختر تحويلها'); }
+    else if (!res) why.push('حالة الإقامة غير معروفة');
+    const bd = bdate(g('سنة الميلاد')); if (!bd || bd < '1900-01-01' || bd > today()) why.push('تاريخ الميلاد غير صالح');
+    const code = String(g('معرف المريض') ?? '').trim().toUpperCase(); if (code && !/^GZ-\d{4,}$/.test(code)) why.push('رمز المريض غير صالح');
+    const hs = ['Normal', 'HBV', 'HCV'].find(x => x.toLowerCase() === String(g('حالة المريض') ?? '').trim().toLowerCase()) || '';
+    if (why.length) { bad.push({ n, name, id, why: why.join('، ') }); continue; }
+    seen.add(id); ok.push({ patient_code: code || null, patient_type: type, full_name: name, national_id: id, gender, birth_date: bd, residency: res, health_status: hs });
+  }
+  impRows = ok;
+  $('#imres').innerHTML = `<div class="sum" style="padding:0"><div><b>${ok.length}</b>صالح للاستيراد</div><div><b>${bad.length}</b>مرفوض</div></div>` +
+    (bad.length ? '<div class="tw" style="margin-top:10px"><table><tr><th>الصف</th><th>الاسم</th><th>الهوية</th><th>السبب</th></tr>' + bad.slice(0, 100).map(b => `<tr><td>${b.n}</td><td>${esc(b.name)}</td><td>${esc(b.id)}</td><td>${esc(b.why)}</td></tr>`).join('') + '</table></div>' + (bad.length > 100 ? '<p class="mut">يُعرض أول 100 صف مرفوض.</p>' : '') : '');
+  if (ok.length) $('#imres').insertAdjacentHTML('beforeend', '<div class="sech">معاينة أول 8 صفوف صالحة (تأكد من الأسماء قبل الاعتماد)</div><div class="tw"><table><tr><th>الرمز</th><th>الاسم</th><th>الهوية</th><th>تاريخ الميلاد</th><th>النوع</th></tr>' + ok.slice(0, 8).map(r => `<tr><td>${esc(r.patient_code || 'تلقائي')}</td><td>${esc(r.full_name)}</td><td>${esc(r.national_id)}</td><td>${r.birth_date}</td><td>${L[r.patient_type]}</td></tr>`).join('') + '</table></div>');
+  $('#imgo').hidden = !ok.length;
+};
+$('#imgo').onclick = async () => {
+  if (!impRows.length) return; $('#imgo').disabled = true;
+  let ins = 0, upd = 0, rej = [];
+  for (let i = 0; i < impRows.length; i += 200) {
+    const { data, error } = await sb.rpc('import_patients', { p_rows: impRows.slice(i, i + 200) });
+    if (error) { msg(errText(error), true); break; }
+    ins += data.inserted; upd += data.updated; rej = rej.concat(data.rejected);
+  }
+  $('#imgo').disabled = false; $('#imgo').hidden = true; const all = impRows; impRows = [];
+  $('#imres').innerHTML = `<div class="sum" style="padding:0"><div><b>${ins}</b>مريض جديد</div><div><b>${upd}</b>تم تحديثهم</div><div><b>${rej.length}</b>رفضتها قاعدة البيانات</div></div>` +
+    (rej.length ? '<div class="tw"><table><tr><th>الهوية</th><th>السبب</th></tr>' + rej.slice(0, 100).map(r => `<tr><td>${esc(r.national_id)}</td><td>${esc(r.reason)}</td></tr>`).join('') + '</table></div>' : '');
+  const chk = await sb.from('v_patients').select('patient_code,full_name,national_id').in('national_id', all.slice(0, 8).map(r => r.national_id));
+  if (chk.data && chk.data.length) $('#imres').insertAdjacentHTML('beforeend', '<div class="sech">تحقق: ما حُفظ فعلًا في قاعدة البيانات</div><div class="tw"><table><tr><th>الرمز</th><th>الاسم المحفوظ</th><th>الهوية</th></tr>' + chk.data.map(r => `<tr><td>${esc(r.patient_code)}</td><td>${esc(r.full_name)}</td><td>${esc(r.national_id)}</td></tr>`).join('') + '</table></div>');
+  await lookups(); msg('اكتمل الاستيراد');
+};
+
+/* ===== تصدير التقرير (Excel) ===== */
+/*BR-START*/
+const LOGO = 'data:image/png;base64,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';
+function buildReport(X, d) {
+  const AR = { male: 'ذكر', female: 'أنثى', adult: 'بالغ', child: 'طفل', resident: 'مقيم', refugee: 'لاجئ', scheduled: 'مجدولة', emergency: 'إسعافية' };
+  const MN = ['كانون الثاني', 'شباط', 'آذار', 'نيسان', 'أيار', 'حزيران', 'تموز', 'آب', 'أيلول', 'تشرين الأول', 'تشرين الثاني', 'كانون الأول'];
+  const NAVY = 'FF203764', LBL = 'FFD6DCE5', B1 = 'FFDDEBF7', B2 = 'FFB4C6E7', COLS = ['C', 'D', 'E', 'F', 'G', 'H'];
+  const keys = [['age_category', 'adult'], ['age_category', 'child'], ['gender', 'male'], ['gender', 'female'], ['residency', 'resident'], ['residency', 'refugee']];
+  const tally = (recs, f) => keys.map(([k, v]) => Math.round(recs.reduce((a, r) => a + (r[k] === v ? (+f(r) || 0) : 0), 0) * 100) / 100);
+  const uniq = recs => [...new Map(recs.map(r => [r.patient_id, r])).values()];
+  const both = d.sessions.concat(d.visits), fx = (formula, result) => ({ formula, result });
+  const sch = d.sessions.filter(r => r.session_type === 'scheduled').length, emg = d.sessions.length - sch;
+  const wb = new X.Workbook(), RTL = [{ rightToLeft: true }];
+  const ws = wb.addWorksheet('Report', { views: RTL, pageSetup: { orientation: 'landscape', paperSize: 9, fitToPage: true, fitToWidth: 1, fitToHeight: 1 } });
+  ws.columns = [18, 18, 16.7, 16.7, 16.7, 16.7, 16.7, 16.7, 16.7].map(width => ({ width }));
+  [51, 25, 38, 25, 6, 25, 6.75, 25, 6, 25, 25, 25, 25, 25, 5.25, 25, 25, 25, 25, 25, 25, 12, 12, 22, 44].forEach((h, i) => ws.getRow(i + 1).height = h);
+  const put = (ref, v, o = {}) => {
+    const c = ws.getCell(ref); c.value = v;
+    c.font = { name: 'Arial', size: o.size || 11, bold: o.bold !== false, color: { argb: o.color || 'FF000000' } };
+    if (o.fill) c.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: o.fill } };
+    const b = { style: o.med ? 'medium' : 'thin' }; c.border = { top: b, bottom: b, left: b, right: b };
+    c.alignment = { horizontal: 'center', vertical: 'middle', wrapText: true };
+    if (o.fmt) c.numFmt = o.fmt;
+  };
+  const span = (r, a, b, v, o) => { put(a + r, v, o); ws.mergeCells(`${a}${r}:${b}${r}`); };
+  const W = 'FFFFFFFF', f0 = new Date(d.from + 'T00:00:00');
+  put('A1', '', { med: true }); ws.mergeCells('A1:B1');
+  ws.addImage(wb.addImage({ base64: LOGO, extension: 'png' }), { tl: { col: 0.35, row: 0.05 }, ext: { width: 64, height: 64 } });
+  span(1, 'C', 'G', 'تقرير إحصائي', { size: 18, color: W, fill: NAVY, med: true });
+  span(1, 'H', 'I', (d.label || MN[f0.getMonth()] + ' ' + f0.getFullYear()), { size: 18, color: W, fill: NAVY, med: true });
+  span(2, 'A', 'B', 'اسم المركز', { fill: LBL }); span(2, 'C', 'I', 'مركز الغسيل الكلوي - غزة');
+  span(3, 'A', 'B', 'اسم المشروع', { fill: LBL }); span(3, 'C', 'E', 'تشغيل مركز الغسيل الكلوي في قطاع غزة ( المرحلة الأولى )');
+  put('F3', 'من تاريخ', { fill: LBL }); span(3, 'G', 'I', d.from, { size: 14, fmt: '@' });
+  span(4, 'A', 'B', 'الموقع', { fill: LBL }); span(4, 'C', 'E', 'قطاع غزة - الزوايدة');
+  put('F4', 'إلى تاريخ', { fill: LBL }); span(4, 'G', 'I', d.to, { size: 14, fmt: '@' });
+  span(6, 'A', 'B', 'عدد جلسات الغسيل الكلوي', { color: W, fill: NAVY, med: true });
+  put('C6', 'الجلسات الدورية', { fill: B2, med: true }); put('D6', sch, { bold: false, med: true });
+  put('E6', 'الجلسات الاسعافية', { fill: B2, med: true }); put('F6', emg, { bold: false, med: true });
+  span(6, 'G', 'H', 'عدد الجلسات الكلي', { fill: B2, med: true }); put('I6', fx('D6+F6', sch + emg), { bold: false, med: true });
+  span(8, 'A', 'I', 'التصنيف وفق الجنس و الفئات العمرية و الإقامة', { color: W, fill: NAVY, med: true });
+  const head = (r, title) => {
+    span(r, 'A', 'B', title, { color: W, fill: NAVY, med: true });
+    ['بالغ', 'طفل', 'ذكر', 'أنثى', 'مقيم', 'لاجئ'].forEach((t, i) => put(COLS[i] + r, t, { fill: B1, med: true }));
+    put('I' + r, 'العدد الكلي', { fill: B2, med: true });
+  };
+  const line = (r, label, v) => {
+    span(r, 'A', 'B', label);
+    v.forEach((x, i) => put(COLS[i] + r, x, { bold: false, fill: B1, med: true }));
+    put('I' + r, fx(`C${r}+D${r}`, v[0] + v[1]), { med: true });
+  };
+  head(10, 'عدد المستفيدين حسب القسم');
+  const a = tally(uniq(d.sessions), () => 1), b = tally(uniq(d.visits), () => 1), t = a.map((x, i) => x + b[i]), tot = t[0] + t[1];
+  line(11, 'قسم الغسيل الكلوي', a); line(12, 'قسم عيادة أمراض الكلية', b);
+  span(13, 'A', 'B', 'عدد المستفيدين الكلي');
+  t.forEach((x, i) => put(COLS[i] + '13', fx(`SUM(${COLS[i]}11:${COLS[i]}12)`, x), { bold: false, fill: B1, med: true }));
+  put('I13', fx('C13+D13', tot), { med: true });
+  span(14, 'A', 'B', 'النسبة المئوية لتوزع المستفيدين');
+  const pr = x => tot ? x / tot : 0, resP = Math.round(pr(t[4]) * 100) / 100;
+  [0, 1, 2, 3].forEach(i => put(COLS[i] + '14', fx(`IF($I$13=0,0,${COLS[i]}13/$I$13)`, pr(t[i])), { bold: false, fill: B1, med: true, fmt: '0%' }));
+  put('G14', fx('IF($I$13=0,0,ROUND(G13/I13,2))', resP), { bold: false, fill: 'FF8EA9DB', med: true, fmt: '0%' });
+  put('H14', fx('IF($I$13=0,0,1-G14)', tot ? 1 - resP : 0), { bold: false, fill: 'FF8EA9DB', med: true, fmt: '0%' });
+  put('I14', fx('IF($I$13=0,0,I13/$I$13)', tot ? 1 : 0), { med: true, fmt: '0%' });
+  head(16, 'الخدمات الصحية الأساسية');
+  line(17, 'عدد الطلبات المخبرية والشعاعية', tally(both, r => r.lab_tests_count + r.radiology_count));
+  line(18, 'عدد الوصفات الداخلية', tally(d.sessions, r => r.internal_prescriptions));
+  line(19, 'عدد الوصفات الخارجية', tally(both, r => r.external_prescriptions));
+  line(20, 'عدد الوحدات الدوائية الداخلية', tally(d.sessions, r => r.internal_drug_units));
+  line(21, 'عدد الوحدات الدوائية الخارجية', tally(both, r => r.external_drug_units));
+  put('B24', 'مدير المشروع', { size: 14, bold: false }); span(24, 'E', 'F', 'المدير الفني', { size: 14, bold: false }); span(24, 'H', 'I', 'مساعد مسؤول البيانات', { size: 14, bold: false });
+  put('B25', '', {}); span(25, 'E', 'F', '', {}); span(25, 'H', 'I', '', {});
+  const dt = s => new Date(s + 'T00:00:00Z'), nz = v => (+v ? +v : null);
+  const sheet = (name, tname, heads, widths, rows) => {
+    const w = wb.addWorksheet(name, { views: RTL });
+    w.columns = widths.map(width => ({ width }));
+    w.addTable({ name: tname, ref: 'A1', headerRow: true, style: { theme: 'TableStyleMedium7', showRowStripes: true }, columns: heads.map(n => ({ name: n, filterButton: true })), rows: rows.length ? rows : [heads.map(() => null)] });
+    w.eachRow(r => r.eachCell(c => { c.font = { name: 'Arial', size: 11 }; }));
+    for (let i = 2; i <= rows.length + 1; i++) w.getCell(i, 1).numFmt = 'yyyy-mm-dd';
+  };
+  sheet('Dialysis', 'DialysisData', ['التاريخ', 'معرف المريض', 'تصنيف المستفيد', 'اسم المريض', 'رقم الهوية', 'الجنس', 'سنة الميلاد', 'الفئة العمرية', 'حالة الإقامة', 'حالة المريض', 'نوع الجلسة', 'وصفة خارجية', 'تحاليل', 'أشعة', 'إحالات', 'إحالة إلى', 'أدوية خارجية', 'ادوية داخلية'],
+    [12, 14, 16, 28, 14, 10, 12, 12, 12, 12, 12, 12, 10, 10, 10, 18, 14, 14],
+    d.sessions.map(r => [dt(r.session_date), r.patient_code, 'غسيل', r.full_name, Number(r.national_id), AR[r.gender], r.birth_year, AR[r.age_category], AR[r.residency], r.health_status, AR[r.session_type], nz(r.external_prescriptions), nz(r.lab_tests_count), nz(r.radiology_count), nz(r.referrals_count), r.referral_to || null, nz(r.external_drug_units), nz(r.internal_drug_units)]));
+  sheet('Clinic', 'ClinicData', ['التاريخ', 'معرف المريض', 'تصنيف المستفيد', 'اسم المريض', 'رقم الهوية', 'الجنس', 'سنة الميلاد', 'الفئة العمرية', 'حالة الإقامة', 'التشخيص المبدئي', 'تحاليل', 'وصفة خارجية', 'أشعة', 'إحالات', 'إحالة إلى', 'ادوية خارجية'],
+    [12, 14, 16, 28, 14, 10, 12, 12, 12, 26, 10, 12, 10, 10, 18, 14],
+    d.visits.map(r => [dt(r.visit_date), r.patient_code, 'عيادة', r.full_name, Number(r.national_id), AR[r.gender], r.birth_year, AR[r.age_category], AR[r.residency], r.diagnoses || null, nz(r.lab_tests_count), nz(r.external_prescriptions), nz(r.radiology_count), nz(r.referrals_count), r.referral_to || null, nz(r.external_drug_units)]));
+  return wb;
+}
+/*BR-END*/
+let rlabel = '';
+function initReports() { if (!$('#ry').value) $('#ry').value = new Date().getFullYear(); if (!$('#rf').value) setRange('wcur'); }
+function setRange(k) {
+  const t = new Date(); t.setHours(0, 0, 0, 0); let a, b; rlabel = '';
+  const Y = +$('#ry').value || t.getFullYear();
+  const P = { q1: [0, 2, 'الربع الأول'], q2: [3, 5, 'الربع الثاني'], h1: [0, 5, 'التقرير النصفي'], q3: [6, 8, 'الربع الثالث'], q4: [9, 11, 'الربع الرابع'], y: [0, 11, 'التقرير السنوي'] };
+  if (P[k]) { const [m1, m2, nm] = P[k]; a = new Date(Y, m1, 1); b = new Date(Y, m2 + 1, 0); rlabel = nm + ' ' + Y; }
+  else if (k[0] === 'w') { a = new Date(t); a.setDate(t.getDate() - ((t.getDay() + 1) % 7) - (k === 'wprev' ? 7 : 0)); b = new Date(a); b.setDate(a.getDate() + 5); }
+  else { const m = t.getMonth() - (k === 'mprev' ? 1 : 0); a = new Date(t.getFullYear(), m, 1); b = new Date(t.getFullYear(), m + 1, 0); }
+  $('#rf').value = dstr(a); $('#rt').value = dstr(b);
+}
+$('#rf').oninput = $('#rt').oninput = () => { rlabel = ''; };
+document.querySelectorAll('[data-r]').forEach(b => b.onclick = () => setRange(b.dataset.r));
+async function fetchAll(view, f) {
+  let out = [], from = 0;
+  for (;;) { const { data, error } = await f(sb.from(view).select('*')).range(from, from + 999); if (error) throw error; out = out.concat(data); if (data.length < 1000) return out; from += 1000; }
+}
+$('#rgo').onclick = async () => {
+  const a = $('#rf').value, b = $('#rt').value;
+  if (!a || !b || a > b) return msg('حدد فترة صحيحة (من تاريخ قبل إلى تاريخ)', true);
+  $('#rgo').disabled = true; $('#rmsg').textContent = 'جارٍ إعداد التقرير...';
+  try {
+    const [ss, vs] = await Promise.all([
+      fetchAll('v_session_summary', q => q.gte('session_date', a).lte('session_date', b).eq('is_completed', true).order('session_date').order('patient_code')),
+      fetchAll('v_visit_summary', q => q.gte('visit_date', a).lte('visit_date', b).order('visit_date').order('patient_code'))]);
+    const buf = await buildReport(ExcelJS, { from: a, to: b, label: rlabel, sessions: ss, visits: vs }).xlsx.writeBuffer();
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(new Blob([buf], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }));
+    link.download = `Report_${a}_${b}.xlsx`; link.click(); setTimeout(() => URL.revokeObjectURL(link.href), 5000);
+    $('#rmsg').textContent = `تم التصدير: ${ss.length} جلسة، ${vs.length} زيارة`;
+  } catch (e) { msg('تعذّر إنشاء التقرير: ' + (e.message || e), true); $('#rmsg').textContent = ''; }
+  $('#rgo').disabled = false;
+};
+
+/* المظهر (داكن/فاتح) + الأيقونات والشعار */
+function setTheme(t) { document.documentElement.dataset.theme = t; document.querySelectorAll('.themebtn').forEach(b => b.textContent = t === 'dark' ? 'المظهر الفاتح' : 'المظهر الداكن'); localStorage.setItem('dz_theme', t); }
+setTheme(localStorage.getItem('dz_theme') || 'dark');
+document.querySelectorAll('.themebtn').forEach(b => b.onclick = () => setTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'));
+$('#themeBtn3').onclick = () => setTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark');
+$('#out2').onclick = () => $('#out').click();
+const IC = {"sessions": "<polyline points=\"22 12 18 12 15 21 9 3 6 12 2 12\"/>", "visits": "<path d=\"M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2\"/><rect x=\"8\" y=\"2\" width=\"8\" height=\"4\" rx=\"1\"/>", "patients": "<path d=\"M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2\"/><circle cx=\"9\" cy=\"7\" r=\"4\"/><path d=\"M23 21v-2a4 4 0 0 0-3-3.87\"/><path d=\"M16 3.13a4 4 0 0 1 0 7.75\"/>", "import": "<path d=\"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4\"/><polyline points=\"17 8 12 3 7 8\"/><line x1=\"12\" y1=\"3\" x2=\"12\" y2=\"15\"/>", "reports": "<line x1=\"18\" y1=\"20\" x2=\"18\" y2=\"10\"/><line x1=\"12\" y1=\"20\" x2=\"12\" y2=\"4\"/><line x1=\"6\" y1=\"20\" x2=\"6\" y2=\"14\"/>", "lookups": "<line x1=\"8\" y1=\"6\" x2=\"21\" y2=\"6\"/><line x1=\"8\" y1=\"12\" x2=\"21\" y2=\"12\"/><line x1=\"8\" y1=\"18\" x2=\"21\" y2=\"18\"/><line x1=\"3\" y1=\"6\" x2=\"3.01\" y2=\"6\"/><line x1=\"3\" y1=\"12\" x2=\"3.01\" y2=\"12\"/><line x1=\"3\" y1=\"18\" x2=\"3.01\" y2=\"18\"/>", "user": "<path d=\"M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2\"/><circle cx=\"12\" cy=\"7\" r=\"4\"/>"};
+document.querySelectorAll('nav button[data-i]').forEach(b => b.insertAdjacentHTML('afterbegin', `<svg class="i" viewBox="0 0 24 24">${IC[b.dataset.i]}</svg>`));
+document.querySelectorAll('img.logo-img').forEach(i => i.src = LOGO);
+/* حالة الاتصال بقاعدة البيانات */
+(async () => {
+  try {
+    const r = await fetch(SUPABASE_URL + '/auth/v1/health', { headers: { apikey: SUPABASE_ANON_KEY } });
+    $('#connDot').className = 'dot ' + (r.ok ? 'ok' : 'bad');
+    $('#connText').textContent = r.ok ? '✓ متصل بقاعدة البيانات بنجاح' : '✕ تعذّر الاتصال بقاعدة البيانات';
+  } catch (e) { $('#connDot').className = 'dot bad'; $('#connText').textContent = '✕ تعذّر الاتصال بالخادم (تحقق من الرابط والمفتاح)'; }
+})();
+
+boot();
+</script>
+</body>
+</html>
